@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { div } from "framer-motion/client";
 
 const INTERESTS = [
   "Gaming",
@@ -18,7 +20,7 @@ const INTERESTS = [
 
 function FullProfile() {
   const navigate = useNavigate();
-
+  const [step, setStep] = useState(1);
   const fileRef = useRef();
 
   const [avatar, setAvatar] = useState(null);
@@ -53,190 +55,149 @@ function FullProfile() {
     navigate("/land");
   };
   return (
-    <div className="profile-page">
-      <div className="profile-card">
-        {/* Step indicator */}
-        <div className="steps">
-          <div className="step done">
-            <div className="step-num">✓</div>
-            <span>Account</span>
+    <div className="full-profile-container">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{
+                width: `${(step / 6) * 100}%`,
+              }}
+            />
           </div>
-          <div className="step-line" />
-          <div className="step active">
-            <div className="step-num">2</div>
-            <span>Profile</span>
-          </div>
-          <div className="step-line" />
-          <div className="step inactive">
-            <div className="step-num">3</div>
-            <span>Done</span>
-          </div>
-        </div>
+          {step === 1 && (
+            <div className="step-container">
+              <h2>Add a Profile Picture</h2>
+              <p>Upload a photo so people can recognize you.</p>
 
-        <h1>Complete your profile</h1>
-        <p className="sub">Help others know who you are on ChitChat.</p>
+              <input type="file" accept="image/*" />
 
-        {/* Avatar upload */}
-        <div className="avatar-section">
-          <div className="avatar-wrap">
-            <div className="avatar">
-              {avatar ? (
-                <img
-                  src={avatar}
-                  alt="Profile"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "50%",
-                  }}
-                />
-              ) : (
-                <span>👤</span>
-              )}
+              <button onClick={() => setStep(2)}>Continue</button>
             </div>
-          </div>
-          <div className="avatar-info">
-            <p className="avatar-title">Profile picture</p>
-            <p className="avatar-sub">JPG or PNG, max 5MB</p>
-            {!avatar ? (
-              <button
-                className="upload-btn"
-                onClick={() => fileRef.current.click()}
-              >
-                Upload photo
-              </button>
-            ) : (
-              <button
-                className="change-btn"
-                onClick={() => fileRef.current.click()}
-              >
-                Change photo
-              </button>
-            )}
-            <input
-              ref={fileRef}
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleAvatar}
-            />
-          </div>
-        </div>
+          )}
 
-        <p className="section-title">Basic info</p>
+          {step === 2 && (
+            <div className="step-container">
+              <h2>Verify Your Contact Number</h2>
+              <p>We'll use this for account security.</p>
 
-        <div className="field">
-          <label>
-            Phone number 
-          </label>
-          <input
-            name="phone"
-            type="tel"
-            placeholder="+91 98765 43210"
-            value={form.phone}
-            onChange={handleChange}
-          />
-          <span className="hint">Used for account recovery only</span>
-        </div>
+              <input type="tel" placeholder="+91 Enter phone number" />
 
-        <div className="field">
-          <label>
-            Bio <span className="optional">optional</span>
-          </label>
-          <textarea
-            name="bio"
-            placeholder="Tell people a little about yourself…"
-            maxLength={30}
-            value={form.bio}
-            onChange={handleChange}
-          />
-          <span className="char-count">{form.bio.length} / 30</span>
-        </div>
+              <div className="button-group">
+                <button onClick={() => setStep(1)}>Back</button>
 
-        <div className="row">
-          <div className="field">
-            <label>
-              Date of birth <span className="optional">optional</span>
-            </label>
-            <input
-              name="dob"
-              type="date"
-              value={form.dob}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="field">
-            <label>
-              Gender <span className="optional">optional</span>
-            </label>
-            <select name="gender" value={form.gender} onChange={handleChange}>
-              <option value="">Select</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Non-binary</option>
-              <option>Prefer not to say</option>
-            </select>
-          </div>
-        </div>
+                <button onClick={() => setStep(3)}>Continue</button>
+              </div>
+            </div>
+          )}
 
-        <hr className="divider" />
-        <p className="section-title">Location</p>
+          {step === 3 && (
+            <div className="step-container">
+              <h2>Tell Us About Yourself</h2>
+              <p>You can change this later.</p>
 
-        <div className="row">
-          <div className="field">
-            <label>
-              City 
-            </label>
-            <input
-              name="city"
-              placeholder="Kolkata"
-              value={form.city}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="field">
-            <label>
-              Country 
-            </label>
-            <select name="country" value={form.country} onChange={handleChange}>
-              <option value="">Select</option>
-              <option>India</option>
-              <option>United States</option>
-              <option>United Kingdom</option>
-              <option>Canada</option>
-              <option>Australia</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
+              <textarea
+                rows="5"
+                maxLength="250"
+                placeholder="Write a short bio..."
+              />
 
-        <hr className="divider" />
-        <p className="section-title">
-          Interests <span className="optional">optional</span>
-        </p>
+              <div className="button-group">
+                <button onClick={() => setStep(2)}>Back</button>
 
-        <div className="interests">
-          {INTERESTS.map((tag) => (
-            <button
-              key={tag}
-              className={`tag ${selectedInterests.includes(tag) ? "active" : ""}`}
-              onClick={() => toggleInterest(tag)}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
+                <button onClick={() => setStep(4)}>Continue</button>
+              </div>
+            </div>
+          )}
 
-        <div className="btn-row">
-          <button className="skip-btn" onClick={() => navigate("/land")}>
-            Skip for now
-          </button>
-          <button className="submit-btn" onClick={handleSave}>
-            Save and continue
-          </button>
-        </div>
-      </div>
+          {step === 4 && (
+            <div className="step-container">
+              <h2>Personal Details</h2>
+
+              <div className="row">
+                <div>
+                  <label>Date of Birth</label>
+                  <input type="date" />
+                </div>
+
+                <div>
+                  <label>Gender</label>
+
+                  <select>
+                    <option>Select Gender</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                    <option>Non-binary</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="button-group">
+                <button onClick={() => setStep(3)}>Back</button>
+
+                <button onClick={() => setStep(5)}>Continue</button>
+              </div>
+            </div>
+          )}
+
+          {step === 5 && (
+            <div className="step-container">
+              <h2>Location</h2>
+
+              <div className="row">
+                <input type="text" placeholder="City" />
+
+                <select>
+                  <option>Select Country</option>
+                </select>
+              </div>
+
+              <div className="button-group">
+                <button onClick={() => setStep(4)}>Back</button>
+
+                <button onClick={() => setStep(6)}>Continue</button>
+              </div>
+            </div>
+          )}
+
+          {step === 6 && (
+            <div className="step-container">
+              <h2>Choose Your Interests</h2>
+              <p>Optional • Select as many as you like.</p>
+
+              <div className="interests">
+                {INTERESTS.map((tag) => (
+                  <button
+                    key={tag}
+                    className={`tag ${
+                      selectedInterests.includes(tag) ? "active" : ""
+                    }`}
+                    onClick={() => toggleInterest(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+
+              <button className="skip-btn">Skip for now</button>
+
+              <div className="button-group">
+                <button onClick={() => setStep(5)}>Back</button>
+
+                <button>Complete Profile</button>
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

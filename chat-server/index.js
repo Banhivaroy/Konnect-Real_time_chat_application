@@ -3,14 +3,22 @@ const cors = require("cors")
 const { Server } = require("socket.io")
 const http = require("http")
 const mongoose = require("mongoose")
-const { first } = require("firebase/firestore/pipelines")
+const { first, field } = require("firebase/firestore/pipelines")
 require("dotenv").config()
 const port = process.env.PORT
-
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
+const cookieParser = require("cookie-parser")
+const strict = require("assert/strict")
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 app.use(express.json())
+app.use(cookieParser())
+
 const server = http.createServer(app)
 
 mongoose.connect(process.env.MONGO_URI)
@@ -57,6 +65,13 @@ io.on("connection" , (socket) => {
 })
 
 
+const generateToken = (userId) => {
+    return jwt.sign(
+        {userId},
+        process.env.JWT_KEY,
+        {expiresIn: "7d"}
+    )
+}
 //  ROUTES
 app.post("/", async(req, res) => {
     console.log("signup request received" , req.body)
@@ -66,22 +81,33 @@ app.post("/", async(req, res) => {
         const existingUsername = await User.findOne({ username: username })
     
             if(existingUsername){
-            return res.json({success: false , message: "username already taken"})
+            return res.json({success: false , field: "username", message: "username already taken"})
             }
         const existingEmail = await User.findOne({ email: email})
   
             if(existingEmail){
-                return res.json({ success: false, message:"email registered"})
+                return res.json({ success: false, field: "email" ,message:"email registered"})
             }
         // SAVE
+       const hashedPassword = await bcrypt.hash(
+        password,
+        10
+       )
        const newUser = new User({
         firstName: firstname,
         lastName: lastname,
         username,
         email,
-        password
+        password:hashedPassword
        })
        await newUser.save()
+       const token = generateToken(newUser._id)
+       res.cookie("jwt", token,{
+            httpOnly: true,
+            secure: false,
+            sameSite: "strict",
+            maxAge: 7*24*60*60*1000
+       })
         console.log("user id : ", newUser._id)
         res.json({ success: true, userId: newUser._id})
     }
