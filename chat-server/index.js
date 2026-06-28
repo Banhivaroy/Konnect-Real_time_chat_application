@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const cookieParser = require("cookie-parser")
 const strict = require("assert/strict")
+const { type } = require("os")
 
 const app = express()
 app.use(cors({
@@ -31,7 +32,16 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true},
     email: { type: String, required: true, unique: true},
     password: { type: String, required: true},
-    createdAt: {type: Date, default: Date.now}
+    createdAt: {type: Date, default: Date.now},
+    inviteCode: {
+        type: String,
+        unique: true
+    },
+    invitedBy: {
+        type: String,
+        default: null
+    },
+
 })
 
 const User = mongoose.model("user",userSchema)
@@ -98,7 +108,8 @@ app.post("/", async(req, res) => {
         lastName: lastname,
         username,
         email,
-        password:hashedPassword
+        password:hashedPassword,
+        inviteCode: nanoid(10)
        })
        await newUser.save()
        const token = generateToken(newUser._id)

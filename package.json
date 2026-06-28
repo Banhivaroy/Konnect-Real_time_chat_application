@@ -13,6 +13,7 @@
     "@lottiefiles/dotlottie-react": "^0.19.4",
     "firebase": "^12.13.0",
     "framer-motion": "^12.40.0",
+    "nanoid": "^5.1.15",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1",
