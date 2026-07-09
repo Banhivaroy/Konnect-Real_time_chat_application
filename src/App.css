@@ -584,7 +584,7 @@ label {
   align-items: center;
 
   background: 0x23153c;
-  /* background: linear-gradient(135deg, #004680 0%, #4484ba 100%); */
+  background: linear-gradient(135deg, #004680 0%, #4484ba 100%);
 
   padding: 20px;
 }
