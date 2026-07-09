@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import {Routes, Route} from "react-router-dom"
-import Landing from './components/landing'
+import {Routes, Route} from "react-router-dom";
+import Landing from './components/Landing';
 import SignUp from "./components/SignUp";
 import FullProfile from "./components/FullProfile";
 import LoginPage from './components/LoginPage';
