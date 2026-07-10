@@ -5,7 +5,7 @@ const http = require("http")
 const mongoose = require("mongoose")
 const { first, field } = require("firebase/firestore/pipelines")
 require("dotenv").config()
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const cookieParser = require("cookie-parser")
