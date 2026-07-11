@@ -42,7 +42,7 @@ function SignUp() {
     }
 
     try {
-      const res = await fetch("https://konnect-backend-gfxr.onrender.com/", {
+      const res = await fetch(import.meta.env.BACKEND_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
