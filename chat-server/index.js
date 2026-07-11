@@ -83,6 +83,9 @@ const generateToken = (userId) => {
     )
 }
 //  ROUTES
+app.get("/", async(req,res) => {
+    res.send("Konnect backend running on render")
+})
 app.post("/", async(req, res) => {
     console.log("signup request received" , req.body)
     const { firstname, lastname, username, email, password} = req.body
