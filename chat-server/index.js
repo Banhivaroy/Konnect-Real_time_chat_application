@@ -15,7 +15,11 @@ const { nanoid } = require("nanoid")
 
 const app = express()
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://ekc-nasscom.web.app",
+        "https://ekc-nasscom.firebaseapp.com"
+    ],
     credentials: true
 }))
 app.use(express.json())
@@ -47,7 +51,14 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("user",userSchema)
 const io = new Server(server,{
-    cors: {origin: "http://localhost:5173"}
+    cors: {
+        origin: [
+        "http://localhost:5173",
+        "https://ekc-nasscom.web.app",
+        "https://ekc-nasscom.firebaseapp.com"
+    ],
+    credentials: true
+    }
 })
 
 const onlineUsers = {}
