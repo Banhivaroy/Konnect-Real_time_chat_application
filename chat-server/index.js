@@ -11,6 +11,7 @@ const bcrypt = require("bcryptjs")
 const cookieParser = require("cookie-parser")
 const strict = require("assert/strict")
 const { type } = require("os")
+const { nanoid } = require("nanoid")
 
 const app = express()
 app.use(cors({
