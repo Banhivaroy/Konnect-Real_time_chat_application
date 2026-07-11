@@ -118,7 +118,7 @@ app.post("/", async(req, res) => {
        const token = generateToken(newUser._id)
        res.cookie("jwt", token,{
             httpOnly: true,
-            secure: false,
+            secure: true,
             sameSite: "strict",
             maxAge: 7*24*60*60*1000
        })
