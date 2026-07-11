@@ -42,7 +42,7 @@ function SignUp() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/", {
+      const res = await fetch("https://konnect-backend-gfxr.onrender.com/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
