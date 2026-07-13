@@ -35,14 +35,15 @@ function SignUp() {
   };
 
   const handleSubmit = async () => {
+    console.log("button clicked")
     const e = validate();
     if (Object.keys(e).length > 0) {
       setErrors(e);
       return;
     }
-
+    console.log(import.meta.env.VITE_BACKEND_URL)
     try {
-      const res = await fetch(import.meta.env.BACKEND_URL, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -54,10 +55,10 @@ function SignUp() {
           password: form.password,
         }),
       });
-
+      
       const data = await res.json();
 
-      console.log("backend data:", data);
+     
 
       if (data.success) {
         navigate("/fullprofile");
@@ -66,7 +67,8 @@ function SignUp() {
           [data.field]: data.message,
         });
       }
-    } catch (err) {
+    } 
+    catch (err) {
       console.log("Signup failed: ", err);
     }
   };
