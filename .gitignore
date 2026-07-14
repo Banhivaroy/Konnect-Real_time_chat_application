@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 chat-server/.env
+
+file.txt
