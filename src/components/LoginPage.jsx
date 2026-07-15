@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="login-page">
@@ -60,7 +62,7 @@ function LoginPage() {
           <a href="/">Forgot Password?</a>
         </div>
 
-        <button className="login-btn">Sign In</button>
+        <button className="login-btn" onClick={navigate("/")}>Sign In</button>
 
         <p className="signup-link">
           Don't have an account? <a href="/">Create one</a>
