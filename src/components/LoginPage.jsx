@@ -62,7 +62,7 @@ function LoginPage() {
           <a href="/">Forgot Password?</a>
         </div>
 
-        <button className="login-btn" onClick={navigate("/")}>Sign In</button>
+        <button className="login-btn" onClick={() => navigate("/")}>Sign In</button>
 
         <p className="signup-link">
           Don't have an account? <a href="/">Create one</a>
