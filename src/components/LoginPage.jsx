@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoogleLogin } from "@react-oauth/google";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,13 +13,15 @@ function LoginPage() {
         <h1>Welcome Back</h1>
         <p className="sub"></p>
 
-        <button className="google-btn">
-          <img
-            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-            alt="Google"
-          />
-          Continue with Google
-        </button>
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            console.log("Google Login Success");
+            console.log(credentialResponse);
+          }}
+          onError={() => {
+            console.log("Google Login Failed");
+          }}
+        />
 
         <div className="divider">
           <span>OR</span>
