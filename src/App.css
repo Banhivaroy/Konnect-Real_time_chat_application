@@ -815,8 +815,19 @@ h1 {
 }
 
 .invite-top{
-    background:linear-gradient(135deg,#2553e8,#4267ff);
-    padding:55px;
+    position:relative;
+    overflow:hidden;
+
+    width:100%;
+    padding:70px 60px 120px;
+
+    background:linear-gradient(
+        135deg,
+        #2354ff,
+        #3c67ff,
+        #5578ff
+    );
+
     color:white;
 }
 
@@ -832,17 +843,41 @@ h1 {
     font-size:17px;
 }
 
+.invite-content{
+    position:relative;
+    z-index:2;
+}
+
+.wave{
+
+    position:absolute;
+
+    left:0;
+    bottom:-2px;
+
+    width:100%;
+    height:120px;
+
+    display:block;
+}
 .invite-code-box{
-    background:rgba(255,255,255,.13);
-    border:1px dashed rgba(255,255,255,.45);
-    backdrop-filter:blur(15px);
+.invite-code-box{
+
+    margin-top:35px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px dashed rgba(255,255,255,.4);
+
+    border-radius:20px;
+
+    padding:22px 28px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:20px 28px;
-    border-radius:18px;
 }
 
 .invite-code-box small{
