@@ -807,7 +807,7 @@ h1 {
 }
 
 .invite-card{
-    width:900px;
+    width:100%;
     background:white;
     border-radius:28px;
     overflow:hidden;
