@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import * as VantaGlobe from "vanta/dist/vanta.globe.min";
 import { useNavigate } from "react-router-dom";
+import { nav } from "framer-motion/client";
 
 function Landing() {
   const vantaRef = useRef(null);
@@ -37,7 +38,7 @@ function Landing() {
           </li>
 
           <li>
-            <button className="invite-btn">Invite a Friend</button>
+            <button className="invite-btn" onClick={() => navigate("/invite")}>Invite a Friend</button>
           </li>
         </ul>
       </nav>

@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import SignUp from "./components/SignUp";
 import FullProfile from "./components/FullProfile";
 import LoginPage from './components/LoginPage';
+import InviteFriend from './components/InviteFriend';
 
 import './App.css'
 
@@ -20,6 +21,7 @@ function App() {
         <Route path = "/signup" element = {<SignUp/>}/>
         <Route path = "/fullprofile" element ={<FullProfile/>}/>
         <Route path = "/login" element = {<LoginPage/>}/>
+        <Route path = "/invite" element = {<InviteFriend/>}/>
       </Routes>
    
   );

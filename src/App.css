@@ -793,3 +793,160 @@ h1 {
   color: #777;
   font-size: 13px;
 }
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   INVITE FRIEND $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+.invite-page{
+    min-height:100vh;
+    background:#eef3fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px;
+    font-family:Inter,sans-serif;
+}
+
+.invite-card{
+    width:900px;
+    background:white;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.08);
+}
+
+.invite-top{
+    background:linear-gradient(135deg,#2553e8,#4267ff);
+    padding:55px;
+    color:white;
+}
+
+.invite-top h1{
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.invite-top p{
+    opacity:.9;
+    margin-bottom:35px;
+    font-size:17px;
+}
+
+.invite-code-box{
+    background:rgba(255,255,255,.13);
+    border:1px dashed rgba(255,255,255,.45);
+    backdrop-filter:blur(15px);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 28px;
+    border-radius:18px;
+}
+
+.invite-code-box small{
+    opacity:.8;
+}
+
+.invite-code-box h2{
+    margin-top:6px;
+    letter-spacing:2px;
+    font-size:34px;
+}
+
+.invite-code-box button{
+    background:white;
+    color:#2553e8;
+    border:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.share-btn{
+    margin-top:28px;
+    width:100%;
+    border:none;
+    border-radius:15px;
+    padding:18px;
+    background:white;
+    color:#2553e8;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:35px;
+}
+
+.stat-card{
+    background:#f8faff;
+    border-radius:18px;
+    text-align:center;
+    padding:25px;
+}
+
+.stat-card h3{
+    color:#2553e8;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.friends{
+    padding:0 35px 35px;
+}
+
+.friends-title{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.friend{
+    display:flex;
+    align-items:center;
+    padding:18px 0;
+    border-bottom:1px solid #ececec;
+}
+
+.avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#2553e8;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    font-weight:700;
+}
+
+.friend-info{
+    margin-left:18px;
+    flex:1;
+}
+
+.friend-info h4{
+    margin-bottom:6px;
+}
+
+.friend-info p{
+    color:#777;
+}
+
+.joined{
+    color:#15b36a;
+    font-weight:700;
+}
+
+.pending{
+    color:#ff8a00;
+    font-weight:700;
+}
