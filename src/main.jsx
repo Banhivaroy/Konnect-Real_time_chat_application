@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import React from "react";
 import { GoogleOAuthProvider} from "@react-oauth/google"
 
-console.log(`client id: ${import.meta.env.VITE_GOOGLE_CLIENT_ID}`)
+
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
