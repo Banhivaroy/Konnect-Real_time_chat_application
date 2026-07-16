@@ -22,7 +22,7 @@ function LoginPage() {
 
   const handleLogIn = async () => {
     try {
-      const res = fetch(`${import.meta.env.VITE_BACKEND_URL}/login`,{
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`,{
         method : "POST",
         headers : {
           "Content-Type": "application/json",

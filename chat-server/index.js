@@ -147,7 +147,7 @@ app.post("/login", async (req,res) =>{
     const { email,password} = req.body
 
     try{
-        const user = await user.findOne({ email })
+        const user = await User.findOne({ email })
         if(!user){
             return res.json({
                 success: false,
