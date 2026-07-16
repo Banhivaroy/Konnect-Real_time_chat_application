@@ -1,10 +1,56 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import { m } from "framer-motion";
 
 function LoginPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+
+  const [form,setform] = useState({
+    email: "",
+    password: ""
+  })
+  const [errors,setErrors] = useState({})
+
+  const handleChange = (e) =>{
+    setform({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleLogIn = async () => {
+    try {
+      const res = fetch(`${import.meta.env.VITE_BACKEND_URL}/login`,{
+        method : "POST",
+        headers : {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password
+        })
+      })
+
+      const data =  await res.json()
+      if(data.success){
+        navigate("/chat")
+      } else{
+        setErrors({
+          login: data.message
+        })
+      }
+
+    }
+    catch(err){
+      console.error(err)
+      setErrors({
+        login: "unable to login"
+      })
+    }
+  }
   return (
     <div className="login-page">
       <div className="login-card">
@@ -62,7 +108,7 @@ function LoginPage() {
           <a href="/">Forgot Password?</a>
         </div>
 
-        <button className="login-btn" onClick={() => navigate("/chat")}>Sign In</button>
+        <button className="login-btn" onClick={handleLogIn}>Sign In</button>
 
         <p className="signup-link">
           Don't have an account? <a href="/">Create one</a>
