@@ -144,6 +144,8 @@ app.post("/", async(req, res) => {
     }
 })
 app.post("/login", async (req,res) =>{
+
+    console.log("post/login request received")
     const { email,password} = req.body
 
     try{
