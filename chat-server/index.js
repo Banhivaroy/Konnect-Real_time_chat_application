@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser")
 const strict = require("assert/strict")
 const { type } = require("os")
 const { nanoid } = require("nanoid")
+const { messaging } = require("firebase-admin")
 
 const app = express()
 app.use(cors({
@@ -140,6 +141,51 @@ app.post("/", async(req, res) => {
     catch(err){
         console.log("Sign Up error", err)
         res.json({success: false, message: "Something went wrong"})
+    }
+})
+app.post("/login", async (req,res) =>{
+    const { email,password} = req.body
+
+    try{
+        const user = await user.findOne({ email })
+        if(!user){
+            return res.json({
+                success: false,
+                message: "email not registered"
+            })
+        }
+
+        const validPassword = await bcrypt.compare(
+            password,
+            user.password
+        )
+
+        if(!validPassword){
+            return res.json({
+                success: false,
+                message: "incorrect password"
+            })
+        }
+        const token = generateToken(user._id)
+        res.cookie("jwt",token,{
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        })
+
+        res.json({
+            success: true,
+            userId: user._id
+        })
+    }
+    catch(err){
+        console.log(err)
+
+        res.json({
+            success: false,
+            message: "Something went wrong"
+        })
     }
 })
 
