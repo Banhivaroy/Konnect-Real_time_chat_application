@@ -192,7 +192,7 @@ function FullProfile() {
               <div className="button-group">
                 <button onClick={() => setStep(5)}>Back</button>
 
-                <button>Complete Profile</button>
+                <button onClick={() => navigate("/chat")}>Complete Profile</button>
               </div>
             </div>
           )}

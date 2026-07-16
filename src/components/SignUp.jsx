@@ -61,7 +61,7 @@ function SignUp() {
      
 
       if (data.success) {
-        navigate("/fullprofile");
+        navigate("/chat");
       } else {
         setErrors({
           [data.field]: data.message,

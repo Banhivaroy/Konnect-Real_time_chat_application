@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp";
 import FullProfile from "./components/FullProfile";
 import LoginPage from './components/LoginPage';
 import InviteFriend from './components/InviteFriend';
+import ChatUI from './components/ChatUI';
 
 import './App.css'
 
@@ -22,6 +23,7 @@ function App() {
         <Route path = "/fullprofile" element ={<FullProfile/>}/>
         <Route path = "/login" element = {<LoginPage/>}/>
         <Route path = "/invite" element = {<InviteFriend/>}/>
+        <Route path = "/chat" element = {<ChatUI/>}/>
       </Routes>
    
   );
