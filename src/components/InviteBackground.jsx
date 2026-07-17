@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 function InviteBackground() {
-  const modules = import.meta.glob("../assets/floating-icons/*.svg", {
+  const modules = import.meta.glob("./assets/floating-icons/*.svg", {
     eager: true,
     import: "default",
   });
