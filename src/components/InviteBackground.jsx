@@ -18,38 +18,20 @@ function InviteBackground() {
     opacity: 0.08 + Math.random() * 0.15,
   }));
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {floatingIcons.map((item) => (
-        <motion.img
-          key={item.id}
-          src={item.icon}
-          alt=""
-          className="absolute"
-          style={{
-            left: `${item.left}%`,
-            top: `-${item.size}px`,
-            width: `${item.size}px`,
-            height: `${item.size}px`,
-            opacity: item.opacity,
-          }}
-          initial={{
-            y: -150,
-            rotate: item.rotate,
-          }}
-          animate={{
-            y: "120vh",
-            x: [0, 20, -15, 15, 0],
-            rotate: item.rotate + 360,
-          }}
-          transition={{
-            duration: item.duration,
-            repeat: Infinity,
-            repeatType: "loop",
-            ease: "linear",
-            delay: item.delay,
-          }}
+  <div className="absolute inset-0 bg-white">
+
+        <img
+            src={icons[0]}
+            alt=""
+            style={{
+                width: "120px",
+                position: "absolute",
+                top: "100px",
+                left: "100px",
+                background: "red",
+            }}
         />
-      ))}
+
     </div>
   );
 }
