@@ -7,50 +7,52 @@ function LoginPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const [form,setform] = useState({
+  const [form, setform] = useState({
     email: "",
-    password: ""
-  })
-  const [errors,setErrors] = useState({})
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     setform({
       ...form,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleLogIn = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`,{
-        method : "POST",
-        headers : {
+      console.log("Email:", form.email);
+      console.log("Password:", form.password);
+      console.log("Backend:", import.meta.env.VITE_BACKEND_URL);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+        method: "POST",
+        headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
         body: JSON.stringify({
           email: form.email,
-          password: form.password
-        })
-      })
+          password: form.password,
+        }),
+      });
 
-      const data =  await res.json()
-      if(data.success){
-        navigate("/chat")
-      } else{
+      const data = await res.json();
+      console.log(data)
+      if (data.success) {
+        navigate("/chat");
+      } else {
         setErrors({
-          login: data.message
-        })
+          login: data.message,
+        });
       }
-
-    }
-    catch(err){
-      console.error(err)
+    } catch (err) {
+      console.error(err);
       setErrors({
-        login: "unable to login"
-      })
+        login: "unable to login",
+      });
     }
-  }
+  };
   return (
     <div className="login-page">
       <div className="login-card">
@@ -77,7 +79,7 @@ function LoginPage() {
 
         <div className="field">
           <label>Email</label>
-          <input type="email" placeholder="alex@email.com" />
+          <input type="email" name = "email" onChange = {handleChange} value = {form.email} placeholder="alex@email.com" />
         </div>
 
         <div className="field">
@@ -86,6 +88,9 @@ function LoginPage() {
           <div className="field-wrap">
             <input
               type={showPassword ? "text" : "password"}
+              name = "password"
+              value = {form.password}
+              onChange={handleChange}
               placeholder="Enter your password"
             />
 
@@ -108,7 +113,9 @@ function LoginPage() {
           <a href="/">Forgot Password?</a>
         </div>
 
-        <button className="login-btn" onClick={handleLogIn}>Sign In</button>
+        <button className="login-btn" onClick={handleLogIn}>
+          Sign In
+        </button>
 
         <p className="signup-link">
           Don't have an account? <a href="/">Create one</a>
