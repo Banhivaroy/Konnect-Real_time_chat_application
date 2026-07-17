@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InviteBackground from "./InviteBackground";
+import InviteBackground from "./InviteBackground.jsx";
 
 function InviteFriend() {
   // const [copied, setCopied] = useState(false);
