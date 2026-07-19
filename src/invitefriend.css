@@ -54,3 +54,157 @@ body,
     height: 100%;
     background: #ffffff;
 }
+
+.invite-page{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Card */
+
+.invite-card{
+
+    width:700px;
+
+    background:#fff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.12);
+
+    position:relative;
+
+    z-index:5;
+}
+
+/* Header */
+
+.invite-header{
+
+    background:#7D1128;
+
+    color:white;
+
+    padding:60px 60px 120px;
+
+    position:relative;
+
+    text-align:center;
+}
+
+.invite-header h1{
+
+    font-size:42px;
+    color: #D8C99B;
+    margin-bottom:15px;
+    font-family: Updock,sans-serif;
+    font-weight:700;
+}
+
+.invite-header p{
+
+    font-size:18px;
+
+    opacity:.9;
+
+    max-width:480px;
+
+    margin:auto;
+
+    line-height:1.6;
+}
+
+/* Wave */
+
+.wave{
+
+    position:absolute;
+
+    bottom:-2px;
+
+    left:0;
+
+    width:100%;
+
+    height:80px;
+}
+
+/* Body */
+
+.invite-body{
+
+    padding:45px;
+}
+
+/* Label */
+
+.label{
+
+    display:block;
+
+    color:#666;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+}
+
+/* Code */
+
+.code-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border:2px solid #ececec;
+
+    border-radius:18px;
+
+    padding:20px 25px;
+}
+
+.code-box h2{
+
+    font-size:28px;
+
+    color:#7D1128;
+
+    letter-spacing:3px;
+}
+
+/* Button */
+
+.code-box button{
+
+    background:#7D1128;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+.code-box button:hover{
+
+    background:#611021;
+}
