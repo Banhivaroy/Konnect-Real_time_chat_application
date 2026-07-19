@@ -22,9 +22,7 @@ function LoginPage() {
 
   const handleLogIn = async () => {
     try {
-      console.log("Email:", form.email);
-      console.log("Password:", form.password);
-      console.log("Backend:", import.meta.env.VITE_BACKEND_URL);
+      
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         method: "POST",
         headers: {

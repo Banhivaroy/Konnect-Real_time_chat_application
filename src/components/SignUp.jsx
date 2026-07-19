@@ -35,7 +35,7 @@ function SignUp() {
   };
 
   const handleSubmit = async () => {
-    console.log("button clicked")
+   
     const e = validate();
     if (Object.keys(e).length > 0) {
       setErrors(e);
@@ -58,8 +58,6 @@ function SignUp() {
       
       const data = await res.json();
 
-     
-
       if (data.success) {
         navigate("/chat");
       } else {
@@ -76,10 +74,6 @@ function SignUp() {
   return (
     <div className="signup-page">
       <div className="signup-card">
-        {/* <div className="brand">
-          <span className="brand-name">Konnect</span>
-        </div> */}
-
         <h1>Create your account on konnect</h1>
         <p className="sub"></p>
 

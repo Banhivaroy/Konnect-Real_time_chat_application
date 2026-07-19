@@ -13,6 +13,7 @@ const strict = require("assert/strict");
 const { type } = require("os");
 const { nanoid } = require("nanoid");
 const { messaging } = require("firebase-admin");
+const { ref } = require("process");
 
 const app = express();
 app.use(
@@ -47,8 +48,8 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   invitedBy: {
-    type: String,
-    default: null,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 
@@ -127,7 +128,7 @@ app.post("/", async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      inviteCode: nanoid(10),
+      inviteCode: nanoid(8),
     });
     await newUser.save();
     const token = generateToken(newUser._id);
