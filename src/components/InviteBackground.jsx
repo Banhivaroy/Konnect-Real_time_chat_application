@@ -21,10 +21,11 @@ function InviteBackground() {
 console.log(icons);
 console.log(icons.length);
   return (
-  <div className="absolute inset-0 bg-white">
+  <div className="invite-background">
 
         <img
             src={icons[0]}
+            className="floating-icon"
             alt=""
             style={{
                 width: "120px",

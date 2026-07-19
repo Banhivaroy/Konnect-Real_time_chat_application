@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InviteBackground from "./InviteBackground.jsx";
+import "./invitefriend.css"
 
 function InviteFriend() {
   // const [copied, setCopied] = useState(false);
@@ -111,11 +112,11 @@ function InviteFriend() {
     //     </div>
     //   </div>
     // </div>
-     <div className="relative min-h-screen overflow-hidden bg-[#FFF8E8]">
+     <div className="invite-page">
 
             <InviteBackground />
 
-            <div className="relative z-10">
+            <div className="invite-content">
 
                 {/* Invite Friend UI */}
 

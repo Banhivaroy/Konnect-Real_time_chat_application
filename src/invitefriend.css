@@ -1,0 +1,55 @@
+/* ===========================
+   Page
+=========================== */
+
+.invite-page {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+/* ===========================
+   Background Layer
+=========================== */
+
+.invite-background {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* ===========================
+   Foreground Content
+=========================== */
+
+.invite-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* ===========================
+   Floating Icons
+=========================== */
+
+.floating-icon {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform;
+}
+
+/* ===========================
+   Optional
+=========================== */
+
+html,
+body,
+#root {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
