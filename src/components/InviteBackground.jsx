@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import icons from "../assets/floating-icons/export";
+import icons from "../assets/floating-icons/export.js";
 function InviteBackground() {
 
 
