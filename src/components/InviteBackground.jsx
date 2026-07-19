@@ -1,41 +1,71 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import icons from "../assets/floating-icons/export.js";
+
+const ICON_COUNT = 36;
+const SPACING = 180;
+
 function InviteBackground() {
 
+  const floatingIcons = useMemo(() => {
+    return Array.from({ length: ICON_COUNT }, (_, i) => ({
+      id: i,
+      icon: icons[Math.floor(Math.random() * icons.length)],
+      left: 5 + Math.random() * 90,
+      top: i * SPACING,
+      size: 28 + Math.random() * 35,
+      rotate: Math.random() * 360,
+      opacity: 0.45 + Math.random() * 0.25,
+    }));
+  }, []);
 
- 
-
-  const floatingIcons = Array.from({ length: 60 }, (_, index) => ({
-    id: index,
-    icon: icons[Math.floor(Math.random() * icons.length)],
-    left: Math.random() * 100,
-    size: 25 + Math.random() * 45,
-    duration: 12 + Math.random() * 15,
-    delay: Math.random() * 8,
-    rotate: Math.random() * 360,
-    opacity: 0.08 + Math.random() * 0.15,
-  }));
-
-
-console.log(icons);
-console.log(icons.length);
   return (
-  <div className="invite-background">
-
-        <img
-            src={icons[0]}
-            className="floating-icon"
+    <div className="invite-background">
+      <motion.div
+        className="scroll-column"
+        animate={{
+          y: [0, -(ICON_COUNT * SPACING)],
+        }}
+        transition={{
+          duration: 65,
+          ease: "linear",
+          repeat: Infinity,
+        }}
+      >
+      
+        {floatingIcons.map((item) => (
+          <img
+            key={`first-${item.id}`}
+            src={item.icon}
             alt=""
+            className="floating-icon"
             style={{
-                width: "120px",
-                position: "absolute",
-                top: "100px",
-                left: "100px",
-                background: "red",
+              left: `${item.left}%`,
+              top: `${item.top}px`,
+              width: `${item.size}px`,
+              opacity: item.opacity,
+              transform: `rotate(${item.rotate}deg)`,
             }}
-        />
+          />
+        ))}
 
+        
+        {floatingIcons.map((item) => (
+          <img
+            key={`second-${item.id}`}
+            src={item.icon}
+            alt=""
+            className="floating-icon"
+            style={{
+              left: `${item.left}%`,
+              top: `${item.top + ICON_COUNT * SPACING}px`,
+              width: `${item.size}px`,
+              opacity: item.opacity,
+              transform: `rotate(${item.rotate}deg)`,
+            }}
+          />
+        ))}
+      </motion.div>
     </div>
   );
 }
