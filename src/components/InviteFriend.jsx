@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InviteBackground from "./InviteBackground.jsx";
-import "./invitefriend.css"
+import "../invitefriend.css"
 
 function InviteFriend() {
   // const [copied, setCopied] = useState(false);
