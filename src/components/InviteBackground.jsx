@@ -1,11 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
+import icons from "../assets/floating-icons/export";
 function InviteBackground() {
-  const modules = import.meta.glob("./assets/floating-icons/*.svg", {
-    eager: true,
-    import: "default",
-  });
-  const icons = Object.values(modules);
+
+
+ 
 
   const floatingIcons = Array.from({ length: 60 }, (_, index) => ({
     id: index,
@@ -17,6 +16,10 @@ function InviteBackground() {
     rotate: Math.random() * 360,
     opacity: 0.08 + Math.random() * 0.15,
   }));
+
+
+console.log(icons);
+console.log(icons.length);
   return (
   <div className="absolute inset-0 bg-white">
 
