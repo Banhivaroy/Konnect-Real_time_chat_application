@@ -23,11 +23,11 @@ function App() {
         <Route path = "/signup" element = {<SignUp/>}/>
         <Route path = "/fullprofile" element ={<FullProfile/>}/>
         <Route path = "/login" element = {<LoginPage/>}/>
-        <Route path = "/invite" element = {   <ProtectedRoute isAuthenticated={isAuthenticated}>
+        <Route path = "/invite" element = {   <ProtectedRoute>
            <InviteFriend/>
           </ProtectedRoute>}/>
         <Route path = "/chat" element = {
-          <ProtectedRoute isAuthenticated={isAuthenticated}>
+          <ProtectedRoute>
             <ChatUI/>
           </ProtectedRoute>}/>
       </Routes>
