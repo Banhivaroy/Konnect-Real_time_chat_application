@@ -179,13 +179,14 @@ app.post("/login", async (req, res) => {
       });
     }
     const token = generateToken(user._id);
+    console.log("Token: ", token)
     res.cookie("jwt", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-
+    console.log("Cookie sent !!!!!!!!")
     res.json({
       success: true,
       userId: user._id,
@@ -202,6 +203,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/me", async(req,res) => {
   try{
+    console.log("cookies received !!!!!!!!!!!!!!!! :",req.cookies)
     const token = req.cookies.jwt
     if(!token){
       return res.status(401).json({
