@@ -1,20 +1,49 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import InviteBackground from "./InviteBackground.jsx";
 import "../invitefriend.css";
+
 
 function InviteFriend() {
   const [copied, setCopied] = useState(false);
 
-  const inviteCode = "HFYEEH10";
+  // INVITE LINK 
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(inviteCode);
-    setCopied(true);
+  const copyInviteLink = async () => {
+    if(!user){
+      return;
+    }
+    const inviteLink = `${window.location.origin}/invite/${user.inviteCode}`
 
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  };
+    await navigator.clipboard.writeText(inviteLink)
+
+    setCopied(true)
+
+    setTimeout(() =>{
+      setCopied(false)
+    }, 2000)
+  }
+
+  const [user,setUser] = useState(null)
+
+  useEffect(() => {
+    const fetchUser = async () =>{
+
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/me`,
+        {
+          credentials: "include"
+        }
+      )
+      const data = await res.json()
+
+      if(data.success){
+        setUser(data.user)
+      }
+    }
+    fetchUser()
+  }, [])
+
+  
 
   return (
     <div className="invite-page">
@@ -53,9 +82,9 @@ function InviteFriend() {
           <span className="label">Your Invite Code</span>
 
           <div className="code-box">
-            <h2>{inviteCode}</h2>
+            <h2>{user?.inviteCode || "Loading...."}</h2>
 
-            <button onClick={copyCode}>
+            <button onClick={copyInviteLink} disabled={!user}>
               {copied ? "Copied!" : "Copy Code"}
             </button>
           </div>

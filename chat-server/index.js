@@ -138,7 +138,7 @@ app.post("/", async (req, res) => {
       sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    console.log("user id : ", newUser._id);
+   
     res.json({ success: true, userId: newUser._id });
   } catch (err) {
     console.log("Sign Up error", err);
@@ -146,17 +146,14 @@ app.post("/", async (req, res) => {
   }
 });
 app.post("/login", async (req, res) => {
-  console.log("post/login request received");
+
   const { email, password } = req.body;
 
   try {
     console.log("Email received:", email);
 
     const users = await User.find({});
-    console.log(
-      "Users in DB:",
-      users.map((u) => u.email),
-    );
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.json({
@@ -194,6 +191,39 @@ app.post("/login", async (req, res) => {
     });
   }
 });
+
+app.get("/me", async(req,res) => {
+  try{
+    const token = req.cookies.jwt
+    if(!token){
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated"
+      })
+    }
+    const decoded = jwt.verify(token,process.env.JWT_KEY)
+
+    const user = await User.findById(decoded.userId).select("-password")
+    if(!user){
+      return res.status(404).json({
+        success: false,
+        message: "user not found"
+      })
+      res.json({
+        success: true,
+        user
+      })
+    }
+  }
+  catch(err){
+    console.log(err.message)
+    return res.status(401).json({
+      success: false,
+      message: "invalid or expired token"
+    })
+
+  }
+})
 
 server.listen(port, () => {
   console.log(`Chat server is running at ${port}`);
