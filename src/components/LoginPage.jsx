@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { m } from "framer-motion";
 
 function LoginPage() {
@@ -23,7 +23,6 @@ function LoginPage() {
 
   const handleLogIn = async () => {
     try {
-      
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         method: "POST",
         headers: {
@@ -37,10 +36,17 @@ function LoginPage() {
       });
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       if (data.success) {
-        const from = location.state?.from?.pathname || "/chat"; 
-        navigate(from,{ replace: true });
+        const check = await fetch(`${import.meta.env.VITE_BACKEND_URL}/me`, {
+          credentials: "include",
+        });
+
+        console.log("Status:", check.status);
+        console.log(await check.json());
+
+        const from = location.state?.from?.pathname || "/chat";
+        navigate(from, { replace: true });
       } else {
         setErrors({
           login: data.message,
@@ -79,7 +85,13 @@ function LoginPage() {
 
         <div className="field">
           <label>Email</label>
-          <input type="email" name = "email" onChange = {handleChange} value = {form.email} placeholder="alex@email.com" />
+          <input
+            type="email"
+            name="email"
+            onChange={handleChange}
+            value={form.email}
+            placeholder="alex@email.com"
+          />
         </div>
 
         <div className="field">
@@ -88,8 +100,8 @@ function LoginPage() {
           <div className="field-wrap">
             <input
               type={showPassword ? "text" : "password"}
-              name = "password"
-              value = {form.password}
+              name="password"
+              value={form.password}
               onChange={handleChange}
               placeholder="Enter your password"
             />

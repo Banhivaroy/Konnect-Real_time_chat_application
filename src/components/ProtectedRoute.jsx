@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 import { Navigate,useLocation } from 'react-router-dom'
 
 
-function ProtectedRoute({ isAuthenticated,children }) {
+function ProtectedRoute({ children }) {
     const [loading,setLoading] = useState(true);
     const [authenticated,setAuthenticated] = useState(false);
     const location = useLocation();
@@ -25,6 +25,7 @@ function ProtectedRoute({ isAuthenticated,children }) {
     if(loading) return (
         <div> Loading ......</div>
     )
+    
     if(!authenticated){
         return (
             <Navigate
