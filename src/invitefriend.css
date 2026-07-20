@@ -105,13 +105,14 @@ body,
     font-size:42px;
     color: #D8C99B;
     margin-bottom:15px;
-    font-family: Updock,sans-serif;
+    font-family: "Leckerli One",sans-serif;
     font-weight:700;
 }
 
 .invite-header p{
 
     font-size:18px;
+    font-family: "Leckerli One", sans-serif;
 
     opacity:.9;
 
@@ -207,4 +208,11 @@ body,
 .code-box button:hover{
 
     background:#611021;
+}
+
+.copied-text{
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4CAF50;
 }

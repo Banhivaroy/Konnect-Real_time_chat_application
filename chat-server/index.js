@@ -15,7 +15,9 @@ const { nanoid } = require("nanoid");
 const { messaging } = require("firebase-admin");
 const { ref } = require("process");
 
+
 const app = express();
+
 app.use(
   cors({
     origin: [
@@ -28,6 +30,12 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+
+// temporary
+app.use((req,res,next) =>{
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+})
 
 const server = http.createServer(app);
 
@@ -209,11 +217,12 @@ app.get("/me", async(req,res) => {
         success: false,
         message: "user not found"
       })
+    }
       res.json({
         success: true,
         user
       })
-    }
+    
   }
   catch(err){
     console.log(err.message)

@@ -1,10 +1,14 @@
 import React, { useState,useEffect } from "react";
 import InviteBackground from "./InviteBackground.jsx";
 import "../invitefriend.css";
+import { span } from "framer-motion/client";
+import  { useNavigate } from "react-router-dom"
 
 
 function InviteFriend() {
   const [copied, setCopied] = useState(false);
+
+  const navigate = useNavigate();
 
   // INVITE LINK 
 
@@ -26,9 +30,10 @@ function InviteFriend() {
   const [user,setUser] = useState(null)
 
   useEffect(() => {
-    const fetchUser = async () =>{
-
-      const res = await fetch(
+    
+      const fetchUser = async () =>{
+        try{
+          const res = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/me`,
         {
           credentials: "include"
@@ -38,10 +43,17 @@ function InviteFriend() {
 
       if(data.success){
         setUser(data.user)
+      } else{
+        navigate("/login")
       }
     }
+    catch(err){
+    console.log(err)
+    navigate("/login")
+    }
+      }
     fetchUser()
-  }, [])
+  }, [navigate])
 
   
 
@@ -82,10 +94,10 @@ function InviteFriend() {
           <span className="label">Your Invite Code</span>
 
           <div className="code-box">
-            <h2>{user?.inviteCode || "Loading...."}</h2>
+            <h2>{user?.inviteCode}</h2>
 
             <button onClick={copyInviteLink} disabled={!user}>
-              {copied ? "Copied!" : "Copy Code"}
+              {copied ? <span className="copied-text">Copied!</span> : <span className="copy-text">Copy code</span>}
             </button>
           </div>
         </div>
