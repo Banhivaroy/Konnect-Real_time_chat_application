@@ -2,13 +2,14 @@ import React, { useState,useEffect } from "react";
 import InviteBackground from "./InviteBackground.jsx";
 import "../invitefriend.css";
 import { span } from "framer-motion/client";
-import  { useNavigate } from "react-router-dom"
+import  { useNavigate,useLocation } from "react-router-dom"
 
 
 function InviteFriend() {
   const [copied, setCopied] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // INVITE LINK 
 
@@ -44,7 +45,11 @@ function InviteFriend() {
       if(data.success){
         setUser(data.user)
       } else{
-        navigate("/login")
+        navigate("/login",{
+          state : {
+            from: location.pathname,
+          }
+        })
       }
     }
     catch(err){

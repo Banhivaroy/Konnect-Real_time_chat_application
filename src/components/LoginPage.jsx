@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { m } from "framer-motion";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
 
   const [form, setform] = useState({
@@ -38,7 +39,8 @@ function LoginPage() {
       const data = await res.json();
       console.log(data)
       if (data.success) {
-        navigate("/chat");
+        const from = location.state?.from?.pathname || "/chat"; 
+        navigate(from,{ replace: true });
       } else {
         setErrors({
           login: data.message,

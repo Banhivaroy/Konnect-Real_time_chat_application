@@ -7,6 +7,7 @@ import FullProfile from "./components/FullProfile";
 import LoginPage from './components/LoginPage';
 import InviteFriend from './components/InviteFriend';
 import ChatUI from './components/ChatUI';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import './App.css'
 
@@ -22,8 +23,13 @@ function App() {
         <Route path = "/signup" element = {<SignUp/>}/>
         <Route path = "/fullprofile" element ={<FullProfile/>}/>
         <Route path = "/login" element = {<LoginPage/>}/>
-        <Route path = "/invite" element = {<InviteFriend/>}/>
-        <Route path = "/chat" element = {<ChatUI/>}/>
+        <Route path = "/invite" element = {   <ProtectedRoute isAuthenticated={isAuthenticated}>
+           <InviteFriend/>
+          </ProtectedRoute>}/>
+        <Route path = "/chat" element = {
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ChatUI/>
+          </ProtectedRoute>}/>
       </Routes>
    
   );
