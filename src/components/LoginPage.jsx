@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate, useLocation } from "react-router-dom";
 import { m } from "framer-motion";
-import SignUpBackground from "./SignUpBackground";
+import LoginBackground from "./LoginBackground";
 import { span } from "framer-motion/client";
 import { Mail, Lock } from "lucide-react";
 import "../LoginBackground.css"
@@ -65,7 +65,7 @@ function LoginPage() {
   };
   return (
     <div className="login-page">
-      <SignUpBackground />
+      <LoginBackground />
       <div className="login-card">
         <h1>Login</h1>
         <p className="sub"></p>

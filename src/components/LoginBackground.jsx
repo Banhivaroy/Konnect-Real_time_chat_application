@@ -14,8 +14,7 @@ function LoginBackground() {
       icon: icons[Math.floor(Math.random() * icons.length)],
       left: 5 + Math.random() * 90,
       top: i * SPACING,
-      size: 28 + Math.random() * 35,
-      
+      size: 28 + Math.random() * 35,      
       opacity: 0.45 + Math.random() * 0.25,
     }));
   }, []);
