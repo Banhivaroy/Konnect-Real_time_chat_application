@@ -3,30 +3,16 @@ import * as THREE from "three";
 import * as VantaGlobe from "vanta/dist/vanta.globe.min";
 import { useNavigate } from "react-router-dom";
 import { nav } from "framer-motion/client";
+import InviteBackground from "./InviteBackground";
 
 function Landing() {
   const vantaRef = useRef(null);
   const navigate = useNavigate();
-  useEffect(() => {
-    let effect = VantaGlobe.default.default({
-      el: vantaRef.current,
-      THREE,
-      mouseControls: true,
-      touchControls: true,
-      color: 0xff3f81,
-      backgroundColor: 0x23153c,
-    });
-
-    return () => effect?.destroy();
-  }, []);
+  
 
   return (
-    <div
-      ref={vantaRef}
-      style={{
-        minHeight: "100vh",
-      }}
-    >
+   <div>
+    <InviteBackground/>
       <nav className="glass-navbar">
         <ul className="nav-links">
           <li>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import SignUpBackground from "./SignUpBackground";
 function SignUp() {
   const navigate = useNavigate();
 
@@ -73,8 +73,10 @@ function SignUp() {
 
   return (
     <div className="signup-page">
+       <SignUpBackground/>
       <div className="signup-card">
-        <h1>Create your account on konnect</h1>
+        
+        <h1>Create Account</h1>
         <p className="sub"></p>
 
         <div className="row">
@@ -139,7 +141,7 @@ function SignUp() {
               <input
                 name="password"
                 type={showPass ? "text" : "password"}
-                placeholder="Min. 8 characters"
+                
                 value={form.password}
                 onChange={handleChange}
               />
@@ -161,7 +163,7 @@ function SignUp() {
               <input
                 name="confirmPassword"
                 type={showConfirm ? "text" : "password"}
-                placeholder="Repeat your password"
+                
                 value={form.confirmPassword}
                 onChange={handleChange}
               />

@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate, useLocation } from "react-router-dom";
 import { m } from "framer-motion";
+import SignUpBackground from "./SignUpBackground";
+import { span } from "framer-motion/client";
+import { Mail, Lock } from "lucide-react";
+import "../LoginBackground.css"
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -61,12 +65,9 @@ function LoginPage() {
   };
   return (
     <div className="login-page">
+      <SignUpBackground />
       <div className="login-card">
-        <div className="brand">
-          <span className="brand-name">Konnect</span>
-        </div>
-
-        <h1>Welcome Back</h1>
+        <h1>Login</h1>
         <p className="sub"></p>
 
         <GoogleLogin
@@ -84,7 +85,10 @@ function LoginPage() {
         </div>
 
         <div className="field">
-          <label>Email</label>
+          <div className="label-row">
+            <Mail size={18} />
+            <label>Email</label>
+          </div>
           <input
             type="email"
             name="email"
@@ -92,10 +96,14 @@ function LoginPage() {
             value={form.email}
             placeholder="alex@email.com"
           />
+          
         </div>
 
         <div className="field">
-          <label>Password</label>
+          <div className="label-row">
+            <Lock size={18} />
+            <label>Password</label>
+          </div>
 
           <div className="field-wrap">
             <input
@@ -111,7 +119,11 @@ function LoginPage() {
               className="eye-btn"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? (
+                <span className="hide">Hide</span>
+              ) : (
+                <span className="show">Show</span>
+              )}
             </button>
           </div>
         </div>
