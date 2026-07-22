@@ -1,0 +1,26 @@
+.chat-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #84732B ;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.scroll-column {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-icon {
+  position: absolute;
+  pointer-events: none;
+
+  /* Make black SVGs appear white */
+  filter: brightness(0) invert(1);
+
+  /* Optional */
+  opacity: 0.6;
+}

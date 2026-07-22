@@ -1,9 +1,10 @@
 import React from "react";
-
+import ChatBackground from "./ChatBackground";
 
 function ChatUI() {
   return (
     <div className="chat-page">
+      <ChatBackground/>
       <aside className="sidebar">
         <div className="sidebar-header">
           <h2>Konnect</h2>
