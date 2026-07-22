@@ -36,7 +36,7 @@ import biome from "./biome-svgrepo-com.svg";
 import blabber from "./blabber-svgrepo-com.svg";
 import bleScanner from "./ble-scanner-svgrepo-com.svg";
 import bluebot from "./bluebot-svgrepo-com.svg";
-import bomtusqua from "./bomtusqua-svgrepo-com.svg";
+import bombsquad from "./bombsquad-svgrepo-com.svg";
 import bookme from "./bookme-svgrepo-com.svg";
 import bouncer from "./bouncer-svgrepo-com.svg";
 import budgetwatch from "./budgetwatch-svgrepo-com.svg";
@@ -91,7 +91,7 @@ const icons = [
   blabber,
   bleScanner,
   bluebot,
-  bomtusqua,
+  bombsquad,
   bookme,
   bouncer,
   budgetwatch,
