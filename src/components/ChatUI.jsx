@@ -4,8 +4,8 @@ import ChatBackground from "./ChatBackground";
 function ChatUI() {
   return (
     <div className="chat-page">
-      <ChatBackground/>
       <aside className="sidebar">
+        <ChatBackground/>
         <div className="sidebar-header">
           <h2>Konnect</h2>
           <button className="new-chat">+</button>
