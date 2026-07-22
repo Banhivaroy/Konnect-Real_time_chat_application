@@ -1,6 +1,6 @@
 import React from "react";
-// import SplineBackground from "./SplineBackground";
-import Spline from '@splinetool/react-spline'
+
+
 function ChatUI() {
   return (
     <div className="chat-page">
@@ -42,9 +42,7 @@ function ChatUI() {
       </aside>
 
       <main className="chat-window">
-        <div className="bmo-container">
-          <Spline scene="https://prod.spline.design/Wjk7LoWwtAwDLfB6/scene.splinecode" />
-        </div>
+        
       </main>
     </div>
   );
