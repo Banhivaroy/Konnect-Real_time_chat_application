@@ -772,12 +772,8 @@ h1 {
 .invite-top {
   position: relative;
   overflow: hidden;
-
   width: 100%;
   padding: 70px 60px 120px;
-
-  background: linear-gradient(135deg, #2354ff, #3c67ff, #5578ff);
-
   color: white;
 }
 
