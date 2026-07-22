@@ -72,27 +72,6 @@ function InviteFriend() {
 
           <p>Share your invite code and grow your network on Konnect.</p>
 
-          <svg
-            className="wave"
-            viewBox="0 0 1440 160"
-            preserveAspectRatio="none"
-          >
-            <path
-              fill="#ffffff"
-              d="
-              M0,96
-              C250,170
-              520,0
-              760,70
-              C980,135
-              1210,170
-              1440,80
-              L1440,160
-              L0,160
-              Z
-            "
-            />
-          </svg>
         </div>
 
         <div className="invite-body">
