@@ -21,92 +21,76 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-
   z-index: 1000;
-
-  display: flex;
+  display: inline-flex;
+  width: fit-content;
   align-items: center;
   justify-content: center;
-
   padding: 12px 20px;
-
-  background: rgba(255, 255, 255, 0.08);
+  background:white;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
+  box-shadow:0 15px 40px rgba(0,0,0,.12);
   border-radius: 999px;
-
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }
 
-.nav-links {
-  list-style: none;
-
-  display: flex;
+.nav-links { 
   align-items: center;
-  gap: 12px;
-
-  margin: 0;
-  padding: 0;
+  display:flex;
+  gap:14px;
+  list-style:none;
 }
 
 .nav-links li {
   margin: 0;
+  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+.hover-pill{
+    position:absolute;
+    inset:0;
+    background:#f5f5f5;
+    border-radius:999px;   
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+}
 .nav-btn {
   background: transparent;
   border: none;
   font-family: "Cormorant Garamond", serif;
   color: black;
-
   font-size: 1rem;
   font-weight: 500;
-
   padding: 10px 18px;
-
   cursor: pointer;
-
   border-radius: 999px;
-
   transition: all 0.3s ease;
+  z-index: 3; 
 }
-
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
 .invite-btn {
-  border: none;
-
-  color: black;
-
-  font-weight: 600;
-  font-size: 1rem;
-
-  padding: 10px 18px;
-
-  border-radius: 999px;
-
-  cursor: pointer;
-
-  background: whitesmoke;
-
+   position:relative;
+    z-index:2;
+    background:none;
+    border:none;
+    padding:16px 34px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:22px;
+    transition:color .3s;
   font-family: "Cormorant Garamond", sans-serif;
+  color: black;
 }
-
 .hero {
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   text-align: center;
   padding: 0 20px;
-
   position: relative;
   z-index: 5;
 }
