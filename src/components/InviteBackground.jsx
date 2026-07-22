@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import icons from "../assets/floating-icons/export.js";
+import icons from "../assets/floating-icons/InviteFriend&Landing_icons/export";
 
 const ICON_COUNT = 36;
 const SPACING = 180;
