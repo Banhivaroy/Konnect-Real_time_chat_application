@@ -1,9 +1,9 @@
 import React,{useMemo} from 'react'
 import { motion } from "framer-motion";
-import icons from "../assets/floating-icons/Signup_Icons/export.js";
+import icons from "../assets/floating-icons/ChatUI_icons/export.js";
 import "../ChatUIBackground.css"
 
-const ICON_COUNT = 48;
+const ICON_COUNT = 53;
 const SPACING = 180;
 
 function ChatBackground() {
