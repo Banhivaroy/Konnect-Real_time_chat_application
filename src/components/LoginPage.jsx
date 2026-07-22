@@ -142,7 +142,7 @@ function LoginPage() {
         </button>
 
         <p className="signup-link">
-          Don't have an account? <a href="/">Create one</a>
+          Don't have an account? <a href="/signup">Create one</a>
         </p>
       </div>
     </div>
