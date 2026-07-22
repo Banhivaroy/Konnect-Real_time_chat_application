@@ -86,10 +86,7 @@ position: relative;
 
 .invite-header{
 
-    background:#7D1128;
-
     color:white;
-
     padding:60px 60px 120px;
 
     position:relative;
@@ -100,7 +97,7 @@ position: relative;
 .invite-header h1{
 
     font-size:42px;
-    color: #D8C99B;
+    color: black;
     margin-bottom:15px;
     font-family: "Nunito",sans-serif;
     
@@ -116,20 +113,6 @@ position: relative;
     line-height:1.6;
 }
 
-/* Wave */
-
-.wave{
-
-    position:absolute;
-
-    bottom:-2px;
-
-    left:0;
-
-    width:100%;
-
-    height:80px;
-}
 
 /* Body */
 
