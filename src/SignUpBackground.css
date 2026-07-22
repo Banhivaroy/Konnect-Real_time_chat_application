@@ -14,12 +14,11 @@
   height: 100%;
 }
 
-.floating-icon {
+.floating-icon-signup {
   position: absolute;
   pointer-events: none;
-
   /* Make black SVGs appear white */
-  /* filter: brightness(0) invert(1); */
+  filter: brightness(0) invert(1);
 
   /* Optional */
   opacity: 0.6;

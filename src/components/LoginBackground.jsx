@@ -38,7 +38,7 @@ function LoginBackground() {
             key={`first-${item.id}`}
             src={item.icon}
             alt=""
-            className="floating-icon"
+            className="floating-icon-login"
             style={{
               left: `${item.left}%`,
               top: `${item.top}px`,
@@ -55,7 +55,7 @@ function LoginBackground() {
             key={`second-${item.id}`}
             src={item.icon}
             alt=""
-            className="floating-icon"
+            className="floating-icon-login"
             style={{
               left: `${item.left}%`,
               top: `${item.top + ICON_COUNT * SPACING}px`,
