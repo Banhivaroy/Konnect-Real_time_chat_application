@@ -18,7 +18,7 @@ import antidote from "./antidote-svgrepo-com.svg";
 import apkExplorerAndEditorAlt from "./apk-explorer-and-editor-alt-svgrepo-com.svg";
 import appcloner from "./appcloner-svgrepo-com.svg";
 import appsales from "./appsales-svgrepo-com.svg";
-import audiodroid from "./audiodroid-svgrepo-com.svg";
+import arduinodroid from "./arduinodroid-svgrepo-com.svg";
 import audinaut from "./audinaut-svgrepo-com.svg";
 import audioanchor from "./audioanchor-svgrepo-com.svg";
 import audiobookshelf from "./audiobookshelf-svgrepo-com.svg";
@@ -73,7 +73,7 @@ const icons = [
   apkExplorerAndEditorAlt,
   appcloner,
   appsales,
-  audiodroid,
+  arduinodroid,
   audinaut,
   audioanchor,
   audiobookshelf,
