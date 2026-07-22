@@ -24,7 +24,7 @@ import audioanchor from "./audioanchor-svgrepo-com.svg";
 import audiobookshelf from "./audiobookshelf-svgrepo-com.svg";
 import audiolab from "./audiolab-svgrepo-com.svg";
 import autoClicker from "./auto-clicker-svgrepo-com.svg";
-import autohtml from "./autohtml-svgrepo-com.svg";
+import autonavi from "./autonavi-svgrepo-com.svg";
 import bajajFinserv from "./bajaj-finserv-svgrepo-com.svg";
 import bearable from "./bearable-svgrepo-com.svg";
 import bettercounter from "./bettercounter-svgrepo-com.svg";
@@ -74,12 +74,12 @@ const icons = [
   appcloner,
   appsales,
   audiodroid,
-  audiotool,
-  audianchor,
+  audinaut,
+  audioanchor,
   audiobookshelf,
   audiolab,
   autoClicker,
-  autohtml,
+  autonavi,
   bajajFinserv,
   bearable,
   bettercounter,
