@@ -1,4 +1,4 @@
-import argoyaSetu from "./argoya-setu-svgrepo-com.svg";
+import aarogyaSetu from "./aarogya-setu-svgrepo-com.svg";
 import abcAustralia from "./abc-australia-svgrepo-com.svg";
 import acc from "./acc-svgrepo-com.svg";
 import accrescent from "./accrescent-svgrepo-com.svg";
@@ -53,7 +53,7 @@ import catima from "./catima-svgrepo-com.svg";
 import catogram from "./catogram-svgrepo-com.svg";
 
 const icons = [
-  argoyaSetu,
+  aarogyaSetu,
   abcAustralia,
   acc,
   accrescent,
