@@ -762,11 +762,17 @@ h1 {
 }
 
 .invite-card {
-  width: 100%;
-  background: white;
+  position: relative;
+  width: 480px;
+  padding: 55px 45px;
   border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  z-index: 10;
 }
 
 .invite-top {
