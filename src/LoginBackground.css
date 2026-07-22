@@ -19,7 +19,7 @@
   pointer-events: none;
   
   /* Make black SVGs appear white */
-  filter: brightness(0) invert(1);
+  filter: none;
 
   /* Optional */
   opacity: 0.6;
