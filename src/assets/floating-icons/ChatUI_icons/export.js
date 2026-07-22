@@ -20,7 +20,7 @@ import appcloner from "./appcloner-svgrepo-com.svg";
 import appsales from "./appsales-svgrepo-com.svg";
 import audiodroid from "./audiodroid-svgrepo-com.svg";
 import audinaut from "./audinaut-svgrepo-com.svg";
-import audianchor from "./audianchor-svgrepo-com.svg";
+import audionchor from "./audionchor-svgrepo-com.svg";
 import audiobookshelf from "./audiobookshelf-svgrepo-com.svg";
 import audiolab from "./audiolab-svgrepo-com.svg";
 import autoClicker from "./auto-clicker-svgrepo-com.svg";
