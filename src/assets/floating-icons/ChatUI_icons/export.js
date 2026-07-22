@@ -33,7 +33,7 @@ import bikesharinghub from "./bikesharinghub-svgrepo-com.svg";
 import bilibili from "./bilibili-svgrepo-com.svg";
 import bima from "./bima-svgrepo-com.svg";
 import biome from "./biome-svgrepo-com.svg";
-import blubber from "./blubber-svgrepo-com.svg";
+import blabber from "./blabber-svgrepo-com.svg";
 import bleScanner from "./ble-scanner-svgrepo-com.svg";
 import bluebot from "./bluebot-svgrepo-com.svg";
 import bomtusqua from "./bomtusqua-svgrepo-com.svg";
@@ -88,7 +88,7 @@ const icons = [
   bilibili,
   bima,
   biome,
-  blubber,
+  blabber,
   bleScanner,
   bluebot,
   bomtusqua,
