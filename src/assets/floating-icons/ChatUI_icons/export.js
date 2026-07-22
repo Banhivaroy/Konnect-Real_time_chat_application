@@ -41,16 +41,16 @@ import bookme from "./bookme-svgrepo-com.svg";
 import bouncer from "./bouncer-svgrepo-com.svg";
 import budgetwatch from "./budgetwatch-svgrepo-com.svg";
 import burgerking from "./burgerking-svgrepo-com.svg";
-import cat from "./cat-svgrepo-com.svg";
-import caizaTem from "./caiza-tem-svgrepo-com.svg";
-import calendarGoogle25 from "./calendar-google-25-svgrepo-com.svg";
+import caf from "./caf-svgrepo-com.svg";
+import caixaTem from "./caixa-tem-svgrepo-com.svg";
+import calendarGoogle22 from "./calendar-google-22-svgrepo-com.svg";
 import callBlocker from "./call-blocker-svgrepo-com.svg";
 import cameraPro from "./camera-pro-svgrepo-com.svg";
 import cards from "./cards-with-cats-svgrepo-com.svg";
 import careem from "./careem-svgrepo-com.svg";
-import carmilla from "./carmilla-svgrepo-com.svg";
+import carsmile from "./carsmile-svgrepo-com.svg";
 import catima from "./catima-svgrepo-com.svg";
-import catgoram from "./catgoram-svgrepo-com.svg";
+import catogram from "./catogram-svgrepo-com.svg";
 
 const icons = [
   argoyaSetu,
@@ -96,16 +96,16 @@ const icons = [
   bouncer,
   budgetwatch,
   burgerking,
-  cat,
-  caizaTem,
-  calendarGoogle25,
+  caf,
+  caixaTem,
+  calendarGoogle22,
   callBlocker,
   cameraPro,
   cards,
   careem,
-  carmilla,
+  carsmile,
   catima,
-  catgoram,
+  catogram,
 ];
 
 export default icons;
