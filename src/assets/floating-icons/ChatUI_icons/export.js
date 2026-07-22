@@ -6,14 +6,14 @@ import adguardVpn from "./adguardvpn-svgrepo-com.svg";
 import adobeAcrobat from "./adobeacrobat-svgrepo-com.svg";
 import advancedTaskManager from "./advanced-task-manager-svgrepo-com.svg";
 import agenda from "./agenda-svgrepo-com.svg";
-import aiPsPlayer from "./ai-ps-player-svgrepo-com.svg";
+import agsPlayer from "./ags-player-svgrepo-com.svg";
 import airdroid from "./airdroid-svgrepo-com.svg";
 import airtel from "./airtel-svgrepo-com.svg";
 import alarmy from "./alarmy-svgrepo-com.svg";
 import alliant from "./alliant-svgrepo-com.svg";
 import alwaysVisibleVolumeButton from "./always-visible-volume-button-svgrepo-com.svg";
 import amazon from "./amazon-svgrepo-com.svg";
-import animy from "./animy-svgrepo-com.svg";
+import aniyomi from "./aniyomi-svgrepo-com.svg";
 import antidote from "./antidote-svgrepo-com.svg";
 import apkExplorerAndEditorAlt from "./apk-explorer-and-editor-alt-svgrepo-com.svg";
 import appcloner from "./appcloner-svgrepo-com.svg";
@@ -61,14 +61,14 @@ const icons = [
   adobeAcrobat,
   advancedTaskManager,
   agenda,
-  aiPsPlayer,
+  agsPlayer,
   airdroid,
   airtel,
   alarmy,
   alliant,
   alwaysVisibleVolumeButton,
   amazon,
-  animy,
+  aniyomi,
   antidote,
   apkExplorerAndEditorAlt,
   appcloner,
