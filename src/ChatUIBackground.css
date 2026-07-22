@@ -19,7 +19,7 @@
   pointer-events: none;
 
   /* Make black SVGs appear white */
-  filter: grayscale(100%);
+  filter: brightness(0) invert(1);
   /* Optional */
   opacity: 0.6;
 }
