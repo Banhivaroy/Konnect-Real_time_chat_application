@@ -12,12 +12,12 @@ function InviteFriend() {
   const location = useLocation();
 
   // INVITE LINK 
-
+    const inviteLink = user ? `${window.location.origin}/invite/${user.inviteCode}` : ""
   const copyInviteLink = async () => {
     if(!user){
       return;
     }
-    const inviteLink = `${window.location.origin}/invite/${user.inviteCode}`
+    
 
     await navigator.clipboard.writeText(inviteLink)
 
