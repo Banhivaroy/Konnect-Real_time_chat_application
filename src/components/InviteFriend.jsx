@@ -78,7 +78,7 @@ function InviteFriend() {
           <span className="label">Your Invite Code</span>
 
           <div className="code-box">
-            <h2>{user?.inviteCode}</h2>
+            <h2>{user?.inviteLink}</h2>
 
             <button onClick={copyInviteLink} disabled={!user}>
               {copied ? <span className="copied-text">Copied!</span> : <span className="copy-text">Copy code</span>}
