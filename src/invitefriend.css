@@ -152,11 +152,8 @@ position: relative;
 }
 
 .code-box h2{
-
-    font-size:28px;
-
-    color:#7D1128;
-
+    font-size:18px;
+    color:black;
     letter-spacing:3px;
 }
 
