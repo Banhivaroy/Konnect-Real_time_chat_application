@@ -10,6 +10,7 @@ function InviteFriend() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [user,setUser] = useState(null)
 
   // INVITE LINK 
     const inviteLink = user ? `${window.location.origin}/invite/${user.inviteCode}` : ""
@@ -28,7 +29,7 @@ function InviteFriend() {
     }, 2000)
   }
 
-  const [user,setUser] = useState(null)
+  
 
   useEffect(() => {
     
