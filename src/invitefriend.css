@@ -151,10 +151,12 @@ position: relative;
     padding:20px 25px;
 }
 
-.code-box h2{
-    font-size:18px;
-    color:black;
-    letter-spacing:3px;
+.invite-link-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 20px;
 }
 
 /* Button */
