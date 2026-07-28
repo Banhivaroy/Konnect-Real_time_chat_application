@@ -23,7 +23,7 @@ function App() {
         <Route path = "/signup" element = {<SignUp/>}/>
         <Route path = "/fullprofile" element ={<FullProfile/>}/>
         <Route path = "/login" element = {<LoginPage/>}/>
-        <Route path = "/invite" element = {   <ProtectedRoute>
+        <Route path = "/invite" element = {<ProtectedRoute>
            <InviteFriend/>
           </ProtectedRoute>}/>
         <Route path = "/chat" element = {

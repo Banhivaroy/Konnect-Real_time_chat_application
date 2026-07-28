@@ -107,7 +107,7 @@ app.get("/", async (req, res) => {
 });
 app.post("/", async (req, res) => {
   console.log("signup request received", req.body);
-  const { firstname, lastname, username, email, password } = req.body;
+  const { firstname, lastname, username, email, password,inviteCode } = req.body;
 
   try {
     const existingUsername = await User.findOne({ username: username });
@@ -128,6 +128,14 @@ app.post("/", async (req, res) => {
         message: "email registered",
       });
     }
+    // INVITE 
+    let invitedBy = null;
+    if(inviteCode){
+      const inviter = await User.findOne({ inviteCode });
+      if(inviter){
+        invitedBy = inviter._id;
+      }
+    }
     // SAVE
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
@@ -137,6 +145,7 @@ app.post("/", async (req, res) => {
       email,
       password: hashedPassword,
       inviteCode: nanoid(8),
+      invitedBy
     });
     await newUser.save();
     const token = generateToken(newUser._id);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SignUpBackground from "./SignUpBackground";
+
 function SignUp() {
   const navigate = useNavigate();
 
@@ -53,6 +54,7 @@ function SignUp() {
           username: form.username,
           email: form.email,
           password: form.password,
+          inviteCode: localStorage.getItem("inviteCode")
         }),
       });
       
