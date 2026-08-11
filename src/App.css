@@ -868,3 +868,25 @@ h1 {
 
   transform: translateX(140px);
 }
+/*  $$$$$$$$$$$$$$$$$$$$$$$$44   LOADER $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.loader-container {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: white;
+  z-index: 9999;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+
+  border: 5px solid #ddd;
+  border-top: 5px solid #000;
+
+  border-radius: 50%;
+}
