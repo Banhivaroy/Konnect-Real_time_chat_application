@@ -64,7 +64,7 @@ function InviteFriend() {
     fetchUser();
   }, [navigate, location.pathname]);
   if (loading) {
-  return <Loader />;
+  return <h1>Loading ............</h1>;
 }
 
   return (
