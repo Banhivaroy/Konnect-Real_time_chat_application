@@ -61,7 +61,7 @@ function SignUp() {
       const data = await res.json();
 
       if (data.success) {
-        navigate("/chat");
+        navigate("/fullprofile");
       } else {
         setErrors({
           [data.field]: data.message,
