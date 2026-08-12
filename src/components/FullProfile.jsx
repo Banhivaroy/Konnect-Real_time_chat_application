@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { div } from "framer-motion/client";
+import FullProfileBackground from "./FullProfileBackground";
 
 const INTERESTS = [
   "Gaming",
@@ -56,6 +57,7 @@ function FullProfile() {
   };
   return (
     <div className="full-profile-container">
+      <FullProfileBackground/>
       <AnimatePresence mode="wait">
         <motion.div
           key={step}
