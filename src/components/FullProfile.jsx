@@ -31,7 +31,9 @@ function FullProfile() {
 
   const [step, setStep] = useState(1);
   const [profileImage, setProfileImage] = useState(null);
-
+  const [profileImageFile, setProfileImageFile] = useState(null);
+  const [bio, setBio] = useState("");
+  const [saving, setSaving] = useState(false);
   const fileInputRef = useRef(null);
 
   const currentStep = steps[step - 1];
@@ -56,10 +58,43 @@ function FullProfile() {
 
     const imageUrl = URL.createObjectURL(file);
     setProfileImage(imageUrl);
+    setProfileImageFile(file);
+  };
+
+  const saveProfile = async () => {
+    try {
+      setSaving(true);
+
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bio: bio,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        alert(data.message || "Failed to save profile.");
+        return;
+      }
+
+      navigate("/chat");
+    } catch (error) {
+      console.error("Profile save error:", error);
+      alert("Something went wrong while saving your profile.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const removeImage = () => {
     setProfileImage(null);
+    setProfileImageFile(null);
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -70,8 +105,7 @@ function FullProfile() {
     if (step < steps.length) {
       setStep((prev) => prev + 1);
     } else {
-      navigate("/chat")
-      
+      saveProfile();
     }
   };
 
@@ -85,6 +119,7 @@ function FullProfile() {
     // navigate to main page or call API
     navigate("/land");
   };
+
   return (
     <div className="complete-profile-page">
       {/* Keep your existing background here */}
@@ -225,9 +260,11 @@ function FullProfile() {
               <div className="placeholder-step">
                 <input
                   type="text"
-                  maxLength={20}
-                  placeholder="In 20 words"
+                  maxLength={250}
+                  placeholder="Within 20 words"
                   className="about-input"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
                 />
 
                 <p>Your personal information fields can go here.</p>
@@ -255,10 +292,17 @@ function FullProfile() {
             className="continue-button"
             onClick={handleContinue}
             type="button"
+            disabled = {saving}
           >
-            <span>{step === steps.length ? "Finish" : "Continue"}</span>
+            <span>
+              {saving
+                ? "Saving..."
+                : step === steps.length
+                  ? "Finish"
+                  : "Continue"}
+            </span>
 
-            <ChevronRight size={19} />
+              {!saving && <ChevronRight size={19} />}
           </button>
 
           {step < steps.length && (

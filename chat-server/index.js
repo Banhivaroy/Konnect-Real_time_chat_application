@@ -3,17 +3,19 @@ const cors = require("cors");
 const { Server } = require("socket.io");
 const http = require("http");
 const mongoose = require("mongoose");
-const { first, field } = require("firebase/firestore/pipelines");
+
 require("dotenv").config();
 const port = process.env.PORT || 3000;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
-const strict = require("assert/strict");
+
 const { type } = require("os");
 const { nanoid } = require("nanoid");
-const { messaging } = require("firebase-admin");
-const { ref } = require("process");
+
+
+const User =  require("./User")
+const Profile = require("./Profile")
 
 
 const app = express();
@@ -44,24 +46,6 @@ mongoose
   .then(() => console.log("MongoDb connected"))
   .catch((err) => console.log(err));
 
-const userSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-  inviteCode: {
-    type: String,
-    unique: true,
-  },
-  invitedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-});
-
-const User = mongoose.model("user", userSchema);
 const io = new Server(server, {
   cors: {
     origin: [
@@ -243,7 +227,97 @@ app.get("/me", async(req,res) => {
     })
 
   }
-})
+});
+
+
+app.put("/profile", async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_KEY
+    );
+
+    const { bio } = req.body;
+
+    const profile = await Profile.findOneAndUpdate(
+      {
+        userId: decoded.userId,
+      },
+      {
+        bio: bio || "",
+      },
+      {
+        new: true,
+        upsert: true,
+        runValidators: true,
+      }
+    );
+
+    res.json({
+      success: true,
+      profile,
+    });
+
+  } catch (err) {
+    console.log("Profile save error:", err);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to save profile",
+    });
+  }
+});
+
+app.get("/profile", async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_KEY
+    );
+
+    const profile = await Profile.findOne({
+      userId: decoded.userId,
+    });
+
+    if (!profile) {
+      return res.json({
+        success: true,
+        profile: null,
+      });
+    }
+
+    res.json({
+      success: true,
+      profile,
+    });
+
+  } catch (err) {
+    console.log("Profile fetch error:", err);
+
+    res.status(401).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
+  }
+});
 
 server.listen(port, () => {
   console.log(`Chat server is running at ${port}`);
