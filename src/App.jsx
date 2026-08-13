@@ -6,7 +6,7 @@ import SignUp from "./components/SignUp";
 import FullProfile from "./components/FullProfile";
 import LoginPage from './components/LoginPage';
 import InviteFriend from './components/InviteFriend';
-import ChatUI from './components/ChatUI';
+import ChatPage from './components/ChatInterface/ChatPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import './App.css'
@@ -14,10 +14,7 @@ import './App.css'
 // const socket = io("http://localhost:3000")
 
 function App() {
- 
-
-  return (
-   
+  return (   
       <Routes>
         <Route path = "/" element = {<Landing/>}/>
         <Route path = "/signup" element = {<SignUp/>}/>
@@ -28,12 +25,10 @@ function App() {
           </ProtectedRoute>}/>
         <Route path = "/chat" element = {
           <ProtectedRoute>
-            <ChatUI/>
+            <ChatPage/>
           </ProtectedRoute>}/>
-      </Routes>
-   
-  );
-  
+      </Routes>   
+  );  
 }
 
 export default App

@@ -1,0 +1,35 @@
+.message-list {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 28px 7% 25px;
+
+  background: #fbfcfc;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.message-date {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 15px;
+}
+
+.message-date span {
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background: #eef1f2;
+
+  color: #969ca2;
+
+  font-size: 11px;
+}
