@@ -36,17 +36,27 @@ function SignUp() {
   };
 
   const handleSubmit = async () => {
-   
-    const e = validate();
-    if (Object.keys(e).length > 0) {
-      setErrors(e);
-      return;
-    }
-    console.log(import.meta.env.VITE_BACKEND_URL)
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/`, {
+  const e = validate();
+
+  if (Object.keys(e).length > 0) {
+    console.log("Validation failed:", e);
+    setErrors(e);
+    return;
+  }
+
+  console.log("Validation passed");
+  console.log("Backend:", import.meta.env.VITE_BACKEND_URL);
+
+  try {
+    console.log("Sending signup request...");
+
+    const res = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/`,
+      {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
         body: JSON.stringify({
           firstname: form.firstName,
@@ -54,24 +64,32 @@ function SignUp() {
           username: form.username,
           email: form.email,
           password: form.password,
-          inviteCode: localStorage.getItem("inviteCode")
+          inviteCode: localStorage.getItem("inviteCode"),
         }),
-      });
-      
-      const data = await res.json();
-
-      if (data.success) {
-        navigate("/fullprofile");
-      } else {
-        setErrors({
-          [data.field]: data.message,
-        });
       }
-    } 
-    catch (err) {
-      console.log("Signup failed: ", err);
+    );
+
+    console.log("Status:", res.status);
+
+    const data = await res.json();
+
+    console.log("Backend response:", data);
+
+    if (data.success) {
+      console.log("Signup successful");
+
+      navigate("/fullprofile");
+    } else {
+      console.log("Signup rejected:", data);
+
+      setErrors({
+        [data.field || "general"]: data.message,
+      });
     }
-  };
+  } catch (err) {
+    console.error("Signup failed:", err);
+  }
+};
 
   return (
     <div className="signup-page">
