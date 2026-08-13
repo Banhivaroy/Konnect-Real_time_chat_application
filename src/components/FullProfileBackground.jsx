@@ -1,7 +1,7 @@
 import React,{useMemo} from 'react'
 import { motion } from "framer-motion";
 import icons from "../assets/floating-icons/Signup_Icons/export.js";
-import "../SignUpBackground.css"
+import "../FullProfileBackground.css"
 
 const ICON_COUNT = 48;
 const SPACING = 180;
@@ -21,7 +21,7 @@ function FullProfileBackground() {
   }, []);
 
   return (
-<div className="signup-background">
+<div className="fullprofile-background">
       <motion.div
         className="scroll-column"
         animate={{
@@ -39,7 +39,7 @@ function FullProfileBackground() {
             key={`first-${item.id}`}
             src={item.icon}
             alt=""
-            className="floating-icon-signup"
+            className="floating-icon-fullprofile"
             style={{
               left: `${item.left}%`,
               top: `${item.top}px`,
@@ -56,7 +56,7 @@ function FullProfileBackground() {
             key={`second-${item.id}`}
             src={item.icon}
             alt=""
-            className="floating-icon-signup"
+            className="floating-icon-fullprofile"
             style={{
               left: `${item.left}%`,
               top: `${item.top + ICON_COUNT * SPACING}px`,

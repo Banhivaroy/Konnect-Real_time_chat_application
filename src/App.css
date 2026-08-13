@@ -311,199 +311,8 @@
   font-weight: 100;
 }
 
-/* **********************************************  FULL PROFILE ********************************************* */
-.full-profile-container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
 
-.step-container {
-  width: 100%;
-  max-width: 650px;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
 
-.step-container h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 8px;
-}
-
-.step-container p {
-  color: #64748b;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
-
-/* INPUTS */
-
-.step-container input,
-.step-container textarea,
-.step-container select {
-  width: 100%;
-  padding: 14px 18px;
-  border: 1px solid #dbe2ea;
-  border-radius: 12px;
-  font-size: 15px;
-  outline: none;
-  margin-bottom: 18px;
-  transition: 0.3s ease;
-  background: #fff;
-}
-
-.step-container input:focus,
-.step-container textarea:focus,
-.step-container select:focus {
-  border-color: #0a4d8c;
-  box-shadow: 0 0 0 4px rgba(10, 77, 140, 0.1);
-}
-
-.step-container textarea {
-  resize: none;
-  min-height: 130px;
-}
-
-/* FILE INPUT */
-
-input[type="file"] {
-  border: 2px dashed #0a4d8c;
-  padding: 40px 20px;
-  text-align: center;
-  cursor: pointer;
-}
-
-/* ROW LAYOUT */
-
-.row {
-  display: flex;
-  gap: 16px;
-}
-
-.row > div {
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .row {
-    flex-direction: column;
-  }
-}
-
-/* BUTTON GROUP */
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-}
-
-/* PRIMARY BUTTON */
-
-.button-group button:last-child {
-  background: linear-gradient(135deg, #001a5c, #0a4d8c);
-  color: white;
-  border: none;
-  padding: 12px 26px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.button-group button:last-child:hover {
-  transform: translateY(-2px);
-}
-
-/* BACK BUTTON */
-
-.button-group button:first-child {
-  background: white;
-  border: 1px solid #dbe2ea;
-  color: #334155;
-  padding: 12px 26px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-/* INTEREST TAGS */
-
-.interests {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.tag {
-  padding: 10px 18px;
-  border: 1px solid #dbe2ea;
-  border-radius: 999px;
-  background: white;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 14px;
-}
-
-.tag:hover {
-  border-color: #0a4d8c;
-}
-
-.tag.active {
-  background: linear-gradient(135deg, #001a5c, #0a4d8c);
-  color: white;
-  border-color: transparent;
-}
-
-/* SKIP BUTTON */
-
-.skip-btn {
-  display: block;
-  margin: 20px auto;
-  background: none;
-  border: none;
-  color: #64748b;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.skip-btn:hover {
-  color: #0a4d8c;
-}
-
-/* LABELS */
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #334155;
-  font-weight: 500;
-}
-
-/* PROGRESS BAR */
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: #e2e8f0;
-  border-radius: 999px;
-  margin-bottom: 30px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #001a5c, #0a4d8c);
-  transition: width 0.4s ease;
-}
 /*  ******************************** LOGIN ****************************8 */
 * {
   margin: 0;
@@ -889,4 +698,93 @@ h1 {
   border-top: 5px solid #000;
 
   border-radius: 50%;
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!   PROGRESS BAR !!!!!!!!!!!!!!!!!!!!!! */
+.profile-progress-wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  margin: 0 auto 35px;
+  padding: 0;
+}
+
+.profile-progress {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Gray line */
+.profile-progress-line {
+  position: absolute;
+
+  left: 14px;
+  right: 14px;
+  top: 50%;
+
+  height: 3px;
+
+  background: #d9d9d9;
+
+  transform: translateY(-50%);
+
+  z-index: 0;
+}
+
+/* Green completed line */
+.profile-progress-fill {
+  height: 100%;
+  background: #0B6E4F;
+  transition: width 0.4s ease;
+}
+
+/* Circle */
+.profile-progress-step {
+  position: relative;
+
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #0B6E4F;
+  border-radius: 50%;
+
+  background: white;
+
+  color: #0B6E4F;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  z-index: 1;
+
+  box-sizing: border-box;
+}
+
+/* Completed */
+.profile-progress-step.completed {
+  background: #0B6E4F;
+  color: white;
+}
+
+/* Current */
+.profile-progress-step.active {
+  background: white;
+  color: #16b866;
+}
+
+/* Text */
+.profile-step-text {
+  margin: 35px 0 0;
+
+  font-size: 18px;
+  color: #222;
 }

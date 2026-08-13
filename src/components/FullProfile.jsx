@@ -1,54 +1,84 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { div } from "framer-motion/client";
+import { Camera, Check, ChevronRight, Upload, X } from "lucide-react";
 import FullProfileBackground from "./FullProfileBackground";
+import "../FullProfileBackground.css";
 
-const INTERESTS = [
-  "Gaming",
-  "Music",
-  "Travel",
-  "Design",
-  "Coding",
-  "Sports",
-  "Cooking",
-  "Movies",
-  "Books",
-  "Fitness",
-  "Art",
-  "Photography",
+const steps = [
+  {
+    number: 1,
+    category: "PROFILE",
+    title: "Add a profile picture",
+    description: "  ",
+  },
+  {
+    number: 2,
+    category: "ABOUT YOU",
+    title: "Tell us about yourself",
+    description: "A little information helps people get to know you.",
+  },
+  {
+    number: 3,
+    category: "ALL DONE",
+    title: "Your profile is ready",
+    description: "Everything looks good. Let's get started.",
+  },
 ];
 
 function FullProfile() {
   const navigate = useNavigate();
+
   const [step, setStep] = useState(1);
-  const fileRef = useRef();
+  const [profileImage, setProfileImage] = useState(null);
 
-  const [avatar, setAvatar] = useState(null);
-  const [form, setForm] = useState({
-    phone: "",
-    bio: "",
-    dob: "",
-    gender: "",
-    city: "",
-    country: "",
-  });
-  const [selectedInterests, setSelectedInterests] = useState([]);
+  const fileInputRef = useRef(null);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const currentStep = steps[step - 1];
 
-  const handleAvatar = (e) => {
-    const file = e.target.files[0];
+  const progress = (step / steps.length) * 100;
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+
     if (!file) return;
-    setAvatar(URL.createObjectURL(file));
+
+    // Optional validation
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file.");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image must be smaller than 5MB.");
+      return;
+    }
+
+    const imageUrl = URL.createObjectURL(file);
+    setProfileImage(imageUrl);
   };
 
-  const toggleInterest = (tag) => {
-    setSelectedInterests((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
-    );
+  const removeImage = () => {
+    setProfileImage(null);
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const handleContinue = () => {
+    if (step < steps.length) {
+      setStep((prev) => prev + 1);
+    } else {
+      navigate("/chat")
+      
+    }
+  };
+
+  const handleSkip = () => {
+    if (step < steps.length) {
+      setStep((prev) => prev + 1);
+    }
   };
 
   const handleSave = () => {
@@ -56,150 +86,188 @@ function FullProfile() {
     navigate("/land");
   };
   return (
-    <div className="full-profile-container">
-      <FullProfileBackground/>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={step}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="progress-bar">
-            <div
+    <div className="complete-profile-page">
+      {/* Keep your existing background here */}
+      <div className="profile-background">
+        <FullProfileBackground />
+      </div>
+
+      <motion.div
+        className="profile-card"
+        initial={{ opacity: 0, y: 25, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.5,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        {/* Progress */}
+        <div className="profile-progress">
+          <div className="progress-top">
+            <span className="progress-label"></span>
+
+            <span className="progress-count">
+              {String(step).padStart(2, "0")}/
+              {String(steps.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          <div className="progress-track">
+            <motion.div
               className="progress-fill"
-              style={{
-                width: `${(step / 6) * 100}%`,
+              animate={{ width: `${progress}%` }}
+              transition={{
+                duration: 0.45,
+                ease: "easeInOut",
               }}
             />
           </div>
-          {step === 1 && (
-            <div className="step-container">
-              <h2>Add a Profile Picture</h2>
-              <p>Upload a photo so people can recognize you.</p>
 
-              <input type="file" accept="image/*" />
+          <div className="step-dots">
+            {steps.map((item) => (
+              <div
+                key={item.number}
+                className={`step-dot ${item.number <= step ? "active" : ""}`}
+              >
+                {item.number < step ? (
+                  <Check size={12} strokeWidth={3} />
+                ) : (
+                  item.number
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
 
-              <button onClick={() => setStep(2)}>Continue</button>
+        {/* Content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={step}
+            className="profile-content"
+            initial={{
+              opacity: 0,
+              x: 20,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            exit={{
+              opacity: 0,
+              x: -20,
+            }}
+            transition={{
+              duration: 0.3,
+            }}
+          >
+            <div className="step-heading">
+              <h1>{currentStep.title}</h1>
             </div>
-          )}
 
-          {step === 2 && (
-            <div className="step-container">
-              <h2>Verify Your Contact Number</h2>
-              <p>We'll use this for account security.</p>
+            {/* STEP 1 */}
+            {step === 1 && (
+              <div className="photo-section">
+                <div className="avatar-wrapper">
+                  <div className={`avatar ${profileImage ? "has-image" : ""}`}>
+                    {profileImage ? (
+                      <img src={profileImage} alt="Profile preview" />
+                    ) : (
+                      <div className="avatar-placeholder">
+                        <Camera size={30} strokeWidth={1.7} />
+                      </div>
+                    )}
+                  </div>
 
-              <input type="tel" placeholder="+91 Enter phone number" />
+                  {profileImage && (
+                    <button
+                      className="remove-image"
+                      onClick={removeImage}
+                      type="button"
+                      aria-label="Remove image"
+                    >
+                      <X size={14} />
+                    </button>
+                  )}
 
-              <div className="button-group">
-                <button onClick={() => setStep(1)}>Back</button>
-
-                <button onClick={() => setStep(3)}>Continue</button>
-              </div>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="step-container">
-              <h2>Tell Us About Yourself</h2>
-              <p>You can change this later.</p>
-
-              <textarea
-                rows="5"
-                maxLength="250"
-                placeholder="Write a short bio..."
-              />
-
-              <div className="button-group">
-                <button onClick={() => setStep(2)}>Back</button>
-
-                <button onClick={() => setStep(4)}>Continue</button>
-              </div>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div className="step-container">
-              <h2>Personal Details</h2>
-
-              <div className="row">
-                <div>
-                  <label>Date of Birth</label>
-                  <input type="date" />
-                </div>
-
-                <div>
-                  <label>Gender</label>
-
-                  <select>
-                    <option>Select Gender</option>
-                    <option>Female</option>
-                    <option>Male</option>
-                    <option>Non-binary</option>
-                    <option>Prefer not to say</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="button-group">
-                <button onClick={() => setStep(3)}>Back</button>
-
-                <button onClick={() => setStep(5)}>Continue</button>
-              </div>
-            </div>
-          )}
-
-          {step === 5 && (
-            <div className="step-container">
-              <h2>Location</h2>
-
-              <div className="row">
-                <input type="text" placeholder="City" />
-
-                <select>
-                  <option>Select Country</option>
-                </select>
-              </div>
-
-              <div className="button-group">
-                <button onClick={() => setStep(4)}>Back</button>
-
-                <button onClick={() => setStep(6)}>Continue</button>
-              </div>
-            </div>
-          )}
-
-          {step === 6 && (
-            <div className="step-container">
-              <h2>Choose Your Interests</h2>
-              <p>Optional • Select as many as you like.</p>
-
-              <div className="interests">
-                {INTERESTS.map((tag) => (
                   <button
-                    key={tag}
-                    className={`tag ${
-                      selectedInterests.includes(tag) ? "active" : ""
-                    }`}
-                    onClick={() => toggleInterest(tag)}
+                    className="avatar-edit"
+                    onClick={() => fileInputRef.current?.click()}
+                    type="button"
+                    aria-label="Upload profile photo"
                   >
-                    {tag}
+                    <Camera size={16} />
                   </button>
-                ))}
+                </div>
+
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  onChange={handleFileChange}
+                  hidden
+                />
+
+                <button
+                  className="upload-button"
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Upload size={17} />
+                  {profileImage ? "Change photo" : "Upload a photo"}
+                </button>
+
+                <p className="upload-hint">JPG, PNG or WEBP · Max 5 MB</p>
               </div>
+            )}
 
-              <button className="skip-btn">Skip for now</button>
+            {/* STEP 2 */}
+            {step === 2 && (
+              <div className="placeholder-step">
+                <input
+                  type="text"
+                  maxLength={20}
+                  placeholder="In 20 words"
+                  className="about-input"
+                />
 
-              <div className="button-group">
-                <button onClick={() => setStep(5)}>Back</button>
-
-                <button onClick={() => navigate("/chat")}>Complete Profile</button>
+                <p>Your personal information fields can go here.</p>
               </div>
-            </div>
+            )}
+
+            {/* STEP 3 */}
+            {step === 3 && (
+              <div className="success-step">
+                <div className="success-icon">
+                  <Check size={34} strokeWidth={2.5} />
+                </div>
+
+                <h2>You're all set!</h2>
+
+                <p>Your profile is ready. Welcome aboard.</p>
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Footer */}
+        <div className="profile-footer">
+          <button
+            className="continue-button"
+            onClick={handleContinue}
+            type="button"
+          >
+            <span>{step === steps.length ? "Finish" : "Continue"}</span>
+
+            <ChevronRight size={19} />
+          </button>
+
+          {step < steps.length && (
+            <button className="skip-button" onClick={handleSkip} type="button">
+              Skip for now
+            </button>
           )}
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      </motion.div>
     </div>
   );
 }
