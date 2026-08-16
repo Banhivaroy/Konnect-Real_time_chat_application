@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import ChatSidebar from "./ChatSidebar";
+import ChatSidebar from "./ChatSideBar";
 import ChatHeader from "./ChatHeader";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
