@@ -110,3 +110,14 @@
 
   cursor: not-allowed;
 }
+/* DARK MODE */
+.chat-page.dark-mode .message-input-wrapper {
+  background: #151a1e;
+  border-top-color: #292f34;
+}
+
+.chat-page.dark-mode .message-input-wrapper input {
+  background: #1c2227;
+  border-color: #30373d;
+  color: #edf0f2;
+}

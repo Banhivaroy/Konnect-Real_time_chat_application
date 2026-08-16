@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import ChatSidebar from "./ChatSidebar";
 import ChatHeader from "./ChatHeader";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import "../../ChatPage.css";
+import ChatBackground from "./ChatBackground";
+import socket from "../../Socket";
 
 const conversations = [
   {
@@ -96,12 +98,43 @@ const initialMessages = {
 
 function ChatPage() {
   const [selectedConversation, setSelectedConversation] = useState(
-    conversations[0]
+    conversations[0],
   );
+  const [currentUser,setCurrentUser] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const [messages, setMessages] = useState(
-    initialMessages[conversations[0].id] || []
+    initialMessages[conversations[0].id] || [],
   );
+
+  // GET LOGGED-IN USER
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/me`, {
+          credentials: "include",
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          setCurrentUser(data.user);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchUser();
+  }, []);
+  // JOIN SOCKET.IO ROOM
+  useEffect(() => {
+    if (!currentUser) return;
+
+    socket.emit("join", currentUser.username);
+
+    console.log("Joined room:", currentUser.username);
+  }, [currentUser]);
 
   const handleSelectConversation = (conversation) => {
     setSelectedConversation(conversation);
@@ -126,30 +159,22 @@ function ChatPage() {
   };
 
   return (
-    <div className="chat-page">
-
+    <div className={`chat-page ${darkMode ? "dark-mode" : ""}`}>
       <ChatSidebar
         conversations={conversations}
         selectedConversation={selectedConversation}
         onSelectConversation={handleSelectConversation}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
       />
 
       <main className="chat-main">
+        <ChatHeader conversation={selectedConversation} />
 
-        <ChatHeader
-          conversation={selectedConversation}
-        />
+        <MessageList messages={messages} />
 
-        <MessageList
-          messages={messages}
-        />
-
-        <MessageInput
-          onSendMessage={handleSendMessage}
-        />
-
+        <MessageInput onSendMessage={handleSendMessage} />
       </main>
-
     </div>
   );
 }

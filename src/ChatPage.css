@@ -19,3 +19,13 @@
 
   background: #ffffff;
 }
+.chat-page.dark-mode {
+  background: #111518;
+}
+
+
+
+.chat-page.dark-mode .chat-main {
+  background: #111518;
+}
+

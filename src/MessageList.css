@@ -33,3 +33,13 @@
 
   font-size: 11px;
 }
+
+/* DARK MODE */
+.chat-page.dark-mode .message-list {
+  background: #111518;
+}
+
+.chat-page.dark-mode .message-bubble-other {
+  background: #242b30;
+  color: #e8ebed;
+}

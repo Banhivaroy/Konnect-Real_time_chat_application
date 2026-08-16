@@ -58,26 +58,50 @@ const io = new Server(server, {
 });
 
 const onlineUsers = {};
+
 io.on("connection", (socket) => {
-  console.log("Someone Entered", socket.id);
+  console.log("User connected:", socket.id);
 
   socket.on("join", (username) => {
-    onlineUsers[socket.id] = username;
-    socket.broadcast.emit("user_joined", username);
-    console.log(`${username} joined. Online: ${Object.values(onlineUsers)}`);
+    onlineUsers[username] = socket.id;
+
+    socket.join(username);
+
+    console.log(`${username} joined room`);
   });
+
   socket.on("Send_msg", (data) => {
-    io.emit("receive_msg", data);
+    console.log("Message received:", data);
+
+    const {
+      from,
+      to,
+      text,
+      time,
+    } = data;
+
+    const message = {
+      from,
+      to,
+      text,
+      time,
+    };
+
+    // Send to recipient
+    io.to(to).emit("receive_msg", message);
+
+    // Also send back to sender
+    io.to(from).emit("receive_msg", message);
   });
-  socket.on("User_typing", (username) => {
-    socket.broadcast.emit("user_typing", username);
-  });
-  socket.on("User_discnnect", () => {
-    const username = onlineUsers[socket.id];
-    if (username) {
-      delete onlineUsers[socket.id];
-      io.emit("user_left", username);
-      console.log(`${username} left`);
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+
+    for (const username in onlineUsers) {
+      if (onlineUsers[username] === socket.id) {
+        delete onlineUsers[username];
+        break;
+      }
     }
   });
 });

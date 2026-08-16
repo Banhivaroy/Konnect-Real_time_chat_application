@@ -16,17 +16,17 @@ import './App.css'
 function App() {
   return (   
       <Routes>
-        <Route path = "/" element = {<Landing/>}/>
+        <Route path = "/" element = {<ChatPage/>}/>
         <Route path = "/signup" element = {<SignUp/>}/>
         <Route path = "/fullprofile" element ={<FullProfile/>}/>
         <Route path = "/login" element = {<LoginPage/>}/>
         <Route path = "/invite" element = {<ProtectedRoute>
            <InviteFriend/>
           </ProtectedRoute>}/>
-        <Route path = "/chat" element = {
+        {/* <Route path = "/chat" element = {
           <ProtectedRoute>
             <ChatPage/>
-          </ProtectedRoute>}/>
+          </ProtectedRoute>}/> */}
       </Routes>   
   );  
 }

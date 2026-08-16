@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Search, Settings, MoreHorizontal } from "lucide-react";
 import ConversationItem from "./ConversationItem";
 import "../../ChatSideBar.css";
-
+import Switch from "./Switch";
 function ChatSidebar({
   conversations,
   selectedConversation,
   onSelectConversation,
+  darkMode,
+  setDarkMode,
 }) {
   const [search, setSearch] = useState("");
 
@@ -18,12 +20,18 @@ function ChatSidebar({
     <aside className="chat-sidebar">
 
       <div className="sidebar-top">
-
+        
         <div className="sidebar-heading">
           <div>
             <h1>Messages</h1>
             <p>Stay connected</p>
           </div>
+
+
+  <Switch
+    checked={darkMode}
+    onChange={() => setDarkMode((prev) => !prev)}
+  />
 
           <button className="sidebar-icon-button">
             <Settings size={19} />

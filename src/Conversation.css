@@ -1,0 +1,255 @@
+/* =========================
+   CONVERSATION ITEM
+========================= */
+
+.conversation-item {
+  width: 100%;
+
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 10px 12px;
+
+  box-sizing: border-box;
+
+  /* Remove browser button styling */
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: none;
+  outline: none;
+
+  border-radius: 13px;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  text-align: left;
+
+  color: inherit;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+
+/* Hover */
+
+.conversation-item:hover {
+  background: #f5f7f8;
+}
+
+
+/* Selected conversation */
+
+.conversation-item.selected {
+  background: #eef8f3;
+}
+
+
+/* =========================
+   AVATAR
+========================= */
+
+.conversation-avatar {
+  position: relative;
+
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  overflow: visible;
+
+  background: #dff1e8;
+
+  color: #168554;
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.conversation-avatar img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+
+/* =========================
+   ONLINE INDICATOR
+========================= */
+
+.online-dot {
+  position: absolute;
+
+  right: -1px;
+  bottom: 1px;
+
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+
+  background: #20b26b;
+
+  border: 2px solid #ffffff;
+
+  box-sizing: content-box;
+}
+
+
+/* =========================
+   TEXT AREA
+========================= */
+
+.conversation-content {
+  flex: 1;
+
+  min-width: 0;
+
+  overflow: hidden;
+}
+
+
+/* =========================
+   TOP ROW
+========================= */
+
+.conversation-top {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.conversation-name {
+  min-width: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  color: #1c2024;
+}
+
+.conversation-time {
+  flex-shrink: 0;
+
+  font-size: 11px;
+
+  color: #9299a1;
+}
+
+
+/* =========================
+   BOTTOM ROW
+========================= */
+
+.conversation-bottom {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-top: 6px;
+}
+
+.conversation-last-message {
+  min-width: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  font-size: 13px;
+
+  line-height: 1.3;
+
+  color: #8a929a;
+}
+
+
+/* =========================
+   READ INDICATOR
+========================= */
+
+.message-read-icon {
+  flex-shrink: 0;
+
+  color: #20a967;
+}
+
+
+/* =========================
+   SELECTED STATE
+========================= */
+
+.conversation-item.selected .conversation-name {
+  color: #13784d;
+}
+
+.conversation-item.selected .conversation-last-message {
+  color: #6e8e7f;
+}
+
+
+/* =========================
+   FOCUS
+========================= */
+
+.conversation-item:focus {
+  outline: none;
+}
+
+.conversation-item:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(25, 168, 102, 0.2);
+}
+.chat-page.dark-mode .conversation-name {
+  color: #ffffff;
+}
+
+.chat-page.dark-mode .conversation-time {
+  color: #8b949e;
+}
+
+.chat-page.dark-mode .conversation-last-message {
+  color: #9aa3ab;
+}
