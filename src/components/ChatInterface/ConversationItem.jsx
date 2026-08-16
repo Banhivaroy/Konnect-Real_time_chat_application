@@ -43,7 +43,7 @@ function ConversationItem({
           </span>
 
           <span className="conversation-time">
-            {conversation.time}
+             {conversation.time || ""}
           </span>
 
         </div>
@@ -51,7 +51,7 @@ function ConversationItem({
         <div className="conversation-bottom">
 
           <span className="conversation-last-message">
-            {conversation.lastMessage}
+           {conversation.lastMessage || "Start a conversation"}
           </span>
 
           <CheckCheck

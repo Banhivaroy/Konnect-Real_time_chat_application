@@ -2,7 +2,7 @@ import React from "react";
 import "../../MessageBubble.css";
 
 function MessageBubble({ message }) {
-  const isMine = message.sender === "me";
+ const isMine = message.from === currentUser?.username;
 
   return (
     <div

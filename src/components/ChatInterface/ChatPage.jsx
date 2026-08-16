@@ -7,105 +7,45 @@ import "../../ChatPage.css";
 import ChatBackground from "./ChatBackground";
 import socket from "../../Socket";
 
-const conversations = [
-  {
-    id: 1,
-    name: "Alex Johnson",
-    username: "@alexj",
-    avatar: null,
-    online: true,
-    lastMessage: "Hey, how are you?",
-    time: "10:42 PM",
-  },
-  {
-    id: 2,
-    name: "Sarah Williams",
-    username: "@sarah",
-    avatar: null,
-    online: false,
-    lastMessage: "See you tomorrow!",
-    time: "9:15 PM",
-  },
-  {
-    id: 3,
-    name: "David Miller",
-    username: "@david",
-    avatar: null,
-    online: true,
-    lastMessage: "That sounds great.",
-    time: "8:32 PM",
-  },
-];
-
-const initialMessages = {
-  1: [
-    {
-      id: 1,
-      sender: "other",
-      text: "Hey! How are you?",
-      time: "10:38 PM",
-    },
-    {
-      id: 2,
-      sender: "me",
-      text: "I'm doing great! How about you?",
-      time: "10:40 PM",
-    },
-    {
-      id: 3,
-      sender: "other",
-      text: "I'm good too. What are you working on?",
-      time: "10:42 PM",
-    },
-  ],
-
-  2: [
-    {
-      id: 1,
-      sender: "other",
-      text: "Are we still meeting tomorrow?",
-      time: "9:10 PM",
-    },
-    {
-      id: 2,
-      sender: "me",
-      text: "Yes, definitely!",
-      time: "9:12 PM",
-    },
-    {
-      id: 3,
-      sender: "other",
-      text: "See you tomorrow!",
-      time: "9:15 PM",
-    },
-  ],
-
-  3: [
-    {
-      id: 1,
-      sender: "me",
-      text: "I have an idea for the project.",
-      time: "8:28 PM",
-    },
-    {
-      id: 2,
-      sender: "other",
-      text: "That sounds great.",
-      time: "8:32 PM",
-    },
-  ],
-};
 
 function ChatPage() {
-  const [selectedConversation, setSelectedConversation] = useState(
-    conversations[0],
-  );
-  const [currentUser,setCurrentUser] = useState(false);
+  const [conversations,setConversations] = useState([])
+  const [selectedConversation, setSelectedConversation] = useState(null);
+  const [currentUser,setCurrentUser] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
-  const [messages, setMessages] = useState(
-    initialMessages[conversations[0].id] || [],
-  );
+  const [messages, setMessages] = useState([]);
+
+  // FRIENDS CONVERSATIONS
+  useEffect(() => {
+  const fetchFriends = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/friends`,
+        {
+          credentials: "include",
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        setConversations(data.friends);
+
+        if (data.friends.length > 0) {
+          setSelectedConversation(data.friends[0]);
+        }
+      } else {
+        console.error(data.message);
+      }
+
+    } catch (err) {
+      console.error("Failed to fetch friends:", err);
+    }
+  };
+
+  fetchFriends();
+}, []);
 
   // GET LOGGED-IN USER
   useEffect(() => {
@@ -127,6 +67,7 @@ function ChatPage() {
 
     fetchUser();
   }, []);
+
   // JOIN SOCKET.IO ROOM
   useEffect(() => {
     if (!currentUser) return;
@@ -139,8 +80,32 @@ function ChatPage() {
   const handleSelectConversation = (conversation) => {
     setSelectedConversation(conversation);
 
-    setMessages(initialMessages[conversation.id] || []);
+    setMessages([]);  
   };
+  // ************** CHAT PAGE LISTENS TO JOIN ROOM
+  useEffect(() => {
+  const handleReceiveMessage = (message) => {
+    console.log("Received message:", message);
+
+    setMessages((prev) => [
+      ...prev,
+      message,
+    ]);
+  };
+
+  socket.on(
+    "receive_msg",
+    handleReceiveMessage
+  );
+
+  return () => {
+    socket.off(
+      "receive_msg",
+      handleReceiveMessage
+    );
+  };
+}, []);
+
 
   const handleSendMessage = (text) => {
     if (!text.trim()) return;

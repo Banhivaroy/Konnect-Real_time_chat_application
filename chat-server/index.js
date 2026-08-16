@@ -343,6 +343,62 @@ app.get("/profile", async (req, res) => {
   }
 });
 
+app.get("/friends", async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_KEY);
+
+    const friends = await User.find({
+      invitedBy: decoded.userId,
+    }).select("-password");
+
+    const profiles = await Profile.find({
+      userId: { $in: friends.map((friend) => friend._id) },
+    });
+
+    const profileMap = new Map(
+      profiles.map((profile) => [
+        profile.userId.toString(),
+        profile,
+      ])
+    );
+
+    const formattedFriends = friends.map((friend) => {
+      const profile = profileMap.get(friend._id.toString());
+
+      return {
+        id: friend._id,
+        name: `${friend.firstName} ${friend.lastName}`,
+        username: friend.username,
+        avatar: profile?.profileImage || null,
+        bio: profile?.bio || "",
+        online: false,
+      };
+    });
+
+    res.json({
+      success: true,
+      friends: formattedFriends,
+    });
+
+  } catch (err) {
+    console.error("Friends fetch error:", err);
+
+    res.status(401).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
+  }
+});
+
 server.listen(port, () => {
   console.log(`Chat server is running at ${port}`);
 });
