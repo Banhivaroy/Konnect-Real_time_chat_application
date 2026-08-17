@@ -218,6 +218,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
+
 app.get("/me", async(req,res) => {
   try{
     console.log("cookies received !!!!!!!!!!!!!!!! :",req.cookies)
@@ -301,6 +302,7 @@ app.put("/profile", async (req, res) => {
   }
 });
 
+
 app.get("/profile", async (req, res) => {
   try {
     const token = req.cookies.jwt;
@@ -342,6 +344,7 @@ app.get("/profile", async (req, res) => {
     });
   }
 });
+
 
 app.get("/friends", async (req, res) => {
   try {
